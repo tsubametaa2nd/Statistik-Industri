@@ -1,65 +1,98 @@
 "use client";
 
 import { useMemo } from "react";
-import { DescriptiveStats } from "@/types";
+import { DescriptiveStats, getVariableColor } from "@/types";
 import { VARIABLE_COLORS } from "@/types";
+import { Info } from "lucide-react";
 
 interface BoxplotChartProps {
   stats: DescriptiveStats[];
 }
 
 export default function BoxplotChart({ stats }: BoxplotChartProps) {
-  const CustomTooltip = ({ data }: { data: DescriptiveStats | null }) => {
-    if (!data) return null;
-    
-    return (
-      <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-4 shadow-lg">
-        <p className="font-semibold mb-2" style={{ color: VARIABLE_COLORS[data.variable] }}>
-          {data.variable}
-        </p>
-        <div className="space-y-1 text-sm text-[var(--text-secondary)]">
-          <p>Max: <span className="text-[var(--text-primary)]">{data.max}</span></p>
-          <p>Q3: <span className="text-[var(--text-primary)]">{data.q3}</span></p>
-          <p>Median: <span className="text-[var(--text-primary)]">{data.median}</span></p>
-          <p>Q1: <span className="text-[var(--text-primary)]">{data.q1}</span></p>
-          <p>Min: <span className="text-[var(--text-primary)]">{data.min}</span></p>
-          <p>IQR: <span className="text-[var(--text-primary)]">{data.iqr.toFixed(2)}</span></p>
-          <p>Outliers: <span className="text-[var(--accent-red)]">{data.outliers?.length || 0}</span></p>
-        </div>
-      </div>
-    );
+  // Find global min and max with buffer for dynamic scaling
+  const { minVal, maxVal } = useMemo(() => {
+    if (!stats.length) return { minVal: 0, maxVal: 5 };
+    const allMins = stats.map((s) => s.min);
+    const allMaxs = stats.map((s) => s.max);
+    const allOutliers = stats.flatMap((s) => s.outliers || []);
+
+    const absoluteMin = Math.min(...allMins, ...allOutliers);
+    const absoluteMax = Math.max(...allMaxs, ...allOutliers);
+    const range = absoluteMax - absoluteMin;
+
+    // Add 10% buffer top and bottom
+    const buffer = range === 0 ? 1 : range * 0.1;
+    return {
+      minVal: absoluteMin - buffer,
+      maxVal: absoluteMax + buffer,
+    };
+  }, [stats]);
+
+  // Scale value dynamically to Y coordinates (350 to 70)
+  const scale = (value: number) => {
+    const range = maxVal - minVal;
+    if (range === 0) return 210; // Midpoint
+    return 350 - ((value - minVal) / range) * 280;
   };
 
+  // Generate 5 dynamic grid ticks
+  const ticks = useMemo(() => {
+    const range = maxVal - minVal;
+    return Array.from({ length: 6 }, (_, i) => minVal + (range * i) / 5);
+  }, [minVal, maxVal]);
+
+  if (!stats.length) {
+    return null;
+  }
+
+  const maxOutliers = Math.max(...stats.map((s) => s.outliers.length));
+
   return (
-    <div className="bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-6">
-      <h3 className="text-xl font-semibold mb-6">Boxplot Perbandingan Variabel</h3>
+    <div id="boxplot-section" className="glass-card rounded-2xl p-6">
+      <div className="mb-6">
+        <h3 className="text-lg font-bold text-slate-100 tracking-tight">
+          Box & Whisker Plot
+        </h3>
+        <p className="text-xs text-[var(--text-secondary)] mt-0.5">
+          Analisis perbandingan distribusi kuartil, sebaran, dan identifikasi
+          pencilan secara visual.
+        </p>
+      </div>
 
       {/* Main Boxplot Chart */}
-      <div className="relative bg-[var(--bg-secondary)] rounded-lg p-8 mb-6">
-        <svg width="100%" height="400" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+      <div className="relative bg-slate-950/40 border border-slate-900/60 rounded-xl p-6 mb-6 overflow-hidden">
+        <svg
+          width="100%"
+          height="320"
+          viewBox="0 0 800 360"
+          preserveAspectRatio="xMidYMid meet"
+          className="mx-auto"
+        >
           {/* Grid lines */}
           <g>
-            {[0, 1, 2, 3, 4, 5].map((value) => {
-              const y = 350 - (value / 5) * 280;
+            {ticks.map((tickVal, index) => {
+              const y = scale(tickVal);
               return (
-                <g key={value}>
+                <g key={index}>
                   <line
                     x1="80"
                     y1={y}
-                    x2="750"
+                    x2="760"
                     y2={y}
-                    stroke="var(--border)"
+                    stroke="rgba(255, 255, 255, 0.03)"
                     strokeWidth="1"
-                    strokeDasharray="4"
+                    strokeDasharray="4 4"
                   />
                   <text
                     x="65"
-                    y={y + 5}
+                    y={y + 4}
                     textAnchor="end"
-                    fill="var(--text-secondary)"
-                    fontSize="14"
+                    fill="var(--text-muted)"
+                    className="font-mono"
+                    fontSize="10"
                   >
-                    {value}
+                    {tickVal.toFixed(2)}
                   </text>
                 </g>
               );
@@ -69,36 +102,39 @@ export default function BoxplotChart({ stats }: BoxplotChartProps) {
           {/* Y-axis label */}
           <text
             x="20"
-            y="200"
+            y="180"
             textAnchor="middle"
-            fill="var(--text-secondary)"
-            fontSize="14"
-            transform="rotate(-90, 20, 200)"
+            fill="var(--text-muted)"
+            fontSize="10"
+            fontWeight="bold"
+            transform="rotate(-90, 20, 180)"
           >
-            Nilai
+            NILAI SKALA
           </text>
 
           {/* Boxplots */}
           {stats.map((stat, index) => {
             const totalVars = stats.length;
-            const chartWidth = 670; // 750 - 80
-            const boxWidth = Math.min(80, chartWidth / (totalVars * 2));
+            const chartWidth = 680; // 760 - 80
             const spacing = chartWidth / totalVars;
+
+            // Adjust box width dynamically based on count
+            const boxWidth = Math.min(60, spacing * 0.4);
             const xPos = 80 + spacing * index + spacing / 2 - boxWidth / 2;
-            
-            // Scale: 0-5 mapped to 350-70 (inverted Y axis)
-            const scale = (value: number) => 350 - (value / 5) * 280;
-            
+
             const minY = scale(stat.min);
             const q1Y = scale(stat.q1);
             const medianY = scale(stat.median);
             const q3Y = scale(stat.q3);
             const maxY = scale(stat.max);
-            
-            const color = VARIABLE_COLORS[stat.variable];
+
+            const color = getVariableColor(stat.variable, index);
 
             return (
-              <g key={stat.variable} className="cursor-pointer hover:opacity-80 transition-opacity">
+              <g
+                key={stat.variable}
+                className="group cursor-pointer transition-opacity"
+              >
                 {/* Whisker line (min to Q1) */}
                 <line
                   x1={xPos + boxWidth / 2}
@@ -106,9 +142,10 @@ export default function BoxplotChart({ stats }: BoxplotChartProps) {
                   x2={xPos + boxWidth / 2}
                   y2={q1Y}
                   stroke={color}
-                  strokeWidth="2"
+                  strokeWidth="1.5"
+                  strokeDasharray="3 3"
                 />
-                
+
                 {/* Whisker line (Q3 to max) */}
                 <line
                   x1={xPos + boxWidth / 2}
@@ -116,42 +153,44 @@ export default function BoxplotChart({ stats }: BoxplotChartProps) {
                   x2={xPos + boxWidth / 2}
                   y2={maxY}
                   stroke={color}
-                  strokeWidth="2"
+                  strokeWidth="1.5"
+                  strokeDasharray="3 3"
                 />
-                
+
                 {/* Min cap */}
                 <line
-                  x1={xPos + boxWidth / 3}
+                  x1={xPos + boxWidth / 4}
                   y1={minY}
-                  x2={xPos + (2 * boxWidth) / 3}
+                  x2={xPos + (3 * boxWidth) / 4}
                   y2={minY}
                   stroke={color}
                   strokeWidth="2"
                 />
-                
+
                 {/* Max cap */}
                 <line
-                  x1={xPos + boxWidth / 3}
+                  x1={xPos + boxWidth / 4}
                   y1={maxY}
-                  x2={xPos + (2 * boxWidth) / 3}
+                  x2={xPos + (3 * boxWidth) / 4}
                   y2={maxY}
                   stroke={color}
                   strokeWidth="2"
                 />
-                
+
                 {/* Box (Q1 to Q3) */}
                 <rect
                   x={xPos}
                   y={q3Y}
                   width={boxWidth}
-                  height={q1Y - q3Y}
+                  height={Math.max(2, q1Y - q3Y)}
                   fill={color}
-                  fillOpacity="0.4"
+                  fillOpacity="0.1"
                   stroke={color}
-                  strokeWidth="2.5"
-                  rx="4"
+                  strokeWidth="2"
+                  className="transition-all group-hover:fill-opacity-20"
+                  rx="2"
                 />
-                
+
                 {/* Median line */}
                 <line
                   x1={xPos}
@@ -159,30 +198,30 @@ export default function BoxplotChart({ stats }: BoxplotChartProps) {
                   x2={xPos + boxWidth}
                   y2={medianY}
                   stroke={color}
-                  strokeWidth="3"
+                  strokeWidth="3.5"
                 />
-                
+
                 {/* Outliers */}
                 {stat.outliers?.map((outlier, oidx) => (
                   <circle
                     key={oidx}
                     cx={xPos + boxWidth / 2}
                     cy={scale(outlier)}
-                    r="5"
+                    r="4"
                     fill="var(--accent-red)"
-                    stroke="var(--bg-secondary)"
-                    strokeWidth="2"
+                    stroke="var(--bg-primary)"
+                    strokeWidth="1.5"
                   />
                 ))}
-                
+
                 {/* Variable label */}
                 <text
                   x={xPos + boxWidth / 2}
-                  y="380"
+                  y="345"
                   textAnchor="middle"
-                  fill="var(--text-primary)"
-                  fontSize="14"
-                  fontWeight="500"
+                  fill="var(--text-secondary)"
+                  fontSize="11"
+                  fontWeight="bold"
                 >
                   {stat.variable}
                 </text>
@@ -194,39 +233,68 @@ export default function BoxplotChart({ stats }: BoxplotChartProps) {
 
       {/* Statistical summary table */}
       <div className="overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="w-full text-xs text-left border-collapse">
           <thead>
-            <tr className="border-b border-[var(--border)]">
-              <th className="text-left py-3 px-4 text-[var(--text-secondary)] font-semibold">Variabel</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">Min</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">Q1</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">Median</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">Q3</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">Max</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">IQR</th>
-              <th className="text-center py-3 px-4 text-[var(--text-secondary)] font-semibold">Outliers</th>
+            <tr className="border-b border-slate-900 text-[var(--text-muted)] font-mono uppercase tracking-wider text-[10px]">
+              <th className="py-3 px-4 font-semibold text-slate-400">
+                Variabel
+              </th>
+              <th className="text-center py-3 px-4 font-semibold">Min</th>
+              <th className="text-center py-3 px-4 font-semibold">Q1</th>
+              <th className="text-center py-3 px-4 font-semibold">
+                Median (Q2)
+              </th>
+              <th className="text-center py-3 px-4 font-semibold">Q3</th>
+              <th className="text-center py-3 px-4 font-semibold">Max</th>
+              <th className="text-center py-3 px-4 font-semibold">IQR</th>
+              <th className="text-center py-3 px-4 font-semibold">Pencilan</th>
             </tr>
           </thead>
-          <tbody>
-            {stats.map((stat) => (
-              <tr key={stat.variable} className="border-b border-[var(--border)] hover:bg-[var(--bg-secondary)] transition-colors">
+          <tbody className="divide-y divide-slate-900/50 font-medium">
+            {stats.map((stat, index) => (
+              <tr
+                key={stat.variable}
+                className="hover:bg-slate-900/20 transition-colors"
+              >
                 <td className="py-3 px-4">
                   <div className="flex items-center gap-2">
                     <div
-                      className="w-3 h-3 rounded"
-                      style={{ backgroundColor: VARIABLE_COLORS[stat.variable] }}
+                      className="w-2 h-2 rounded-full"
+                      style={{
+                        backgroundColor: getVariableColor(stat.variable, index),
+                      }}
                     />
-                    <span className="font-medium">{stat.variable}</span>
+                    <span className="font-bold text-slate-200">
+                      {stat.variable}
+                    </span>
                   </div>
                 </td>
-                <td className="text-center py-3 px-4">{stat.min}</td>
-                <td className="text-center py-3 px-4">{stat.q1}</td>
-                <td className="text-center py-3 px-4 font-semibold text-[var(--accent-blue)]">{stat.median}</td>
-                <td className="text-center py-3 px-4">{stat.q3}</td>
-                <td className="text-center py-3 px-4">{stat.max}</td>
-                <td className="text-center py-3 px-4">{stat.iqr.toFixed(2)}</td>
+                <td className="text-center py-3 px-4 text-slate-300 font-mono">
+                  {stat.min}
+                </td>
+                <td className="text-center py-3 px-4 text-slate-300 font-mono">
+                  {stat.q1.toFixed(2)}
+                </td>
+                <td className="text-center py-3 px-4 font-mono font-bold text-[var(--accent-blue)]">
+                  {stat.median}
+                </td>
+                <td className="text-center py-3 px-4 text-slate-300 font-mono">
+                  {stat.q3.toFixed(2)}
+                </td>
+                <td className="text-center py-3 px-4 text-slate-300 font-mono">
+                  {stat.max}
+                </td>
+                <td className="text-center py-3 px-4 text-slate-300 font-mono">
+                  {stat.iqr.toFixed(2)}
+                </td>
                 <td className="text-center py-3 px-4">
-                  <span className={stat.outliers.length > 0 ? "text-[var(--accent-red)] font-semibold" : ""}>
+                  <span
+                    className={`font-mono font-bold px-1.5 py-0.5 rounded text-[10px] ${
+                      stat.outliers.length > 0
+                        ? "text-[var(--accent-red)] bg-[var(--accent-red)]/10 border border-[var(--accent-red)]/20"
+                        : "text-slate-400"
+                    }`}
+                  >
                     {stat.outliers.length}
                   </span>
                 </td>
@@ -236,25 +304,19 @@ export default function BoxplotChart({ stats }: BoxplotChartProps) {
         </table>
       </div>
 
-      {/* Legend */}
-      <div className="mt-6 flex flex-wrap gap-4 justify-center">
-        {stats.map((stat) => (
-          <div key={stat.variable} className="flex items-center gap-2">
-            <div
-              className="w-4 h-4 rounded"
-              style={{ backgroundColor: VARIABLE_COLORS[stat.variable] }}
-            />
-            <span className="text-sm text-[var(--text-secondary)]">{stat.variable}</span>
-          </div>
-        ))}
-      </div>
-
       {/* Interpretation */}
-      <div className="mt-6 p-4 bg-[var(--bg-secondary)] rounded-lg border border-[var(--border)]">
-        <p className="text-sm text-[var(--text-secondary)]">
-          <strong className="text-[var(--text-primary)]">Interpretasi:</strong> Boxplot menunjukkan distribusi dan perbandingan 
-          nilai antar variabel. Box menggambarkan rentang interkuartil (IQR), garis tengah menunjukkan median, 
-          dan whisker menunjukkan rentang data. Titik merah menandakan outlier (nilai ekstrem).
+      <div className="mt-6 p-4 bg-slate-950/40 rounded-xl border border-slate-900/60 flex items-start gap-2.5 text-xs">
+        <Info className="w-5 h-5 text-[var(--accent-cyan)] flex-shrink-0 mt-0.5" />
+        <p className="text-[var(--text-secondary)] leading-relaxed">
+          <strong className="text-slate-200">
+            Panduan Interpretasi Boxplot:
+          </strong>{" "}
+          Bagian kotak (box) menggambarkan rentang 50% data tengah
+          (Interquartile Range, Q1 ke Q3). Garis horizontal tebal di dalam kotak
+          adalah nilai median. Garis vertikal terputus (whiskers) memanjang ke
+          nilai minimum dan maksimum data non-ekstrem. Titik merah terpisah
+          menunjukkan nilai pencilan (outliers) yang berada di luar batas Tukey
+          (1.5×IQR).
         </p>
       </div>
     </div>

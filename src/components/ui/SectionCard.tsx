@@ -10,10 +10,9 @@ export default function SectionCard({
   className = "",
 }: SectionCardProps) {
   return (
-    <div
-      className={`bg-[var(--bg-card)] border border-[var(--border)] rounded-lg p-6 transition-all hover:translate-y-[-2px] hover:shadow-xl ${className}`}
-    >
+    <div className={`glass-card rounded-xl p-6 ${className}`}>
       {children}
     </div>
   );
 }
+

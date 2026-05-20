@@ -1,0 +1,202 @@
+[
+  {
+    "NO": 1,
+    "ProductQuality": 8.5,
+    "ServiceSpeed": 7.8,
+    "StaffFriendliness": 9.2,
+    "ValueForMoney": 7.5,
+    "OverallSatisfaction": 8.3
+  },
+  {
+    "NO": 2,
+    "ProductQuality": 9.1,
+    "ServiceSpeed": 8.6,
+    "StaffFriendliness": 9.5,
+    "ValueForMoney": 8.2,
+    "OverallSatisfaction": 8.9
+  },
+  {
+    "NO": 3,
+    "ProductQuality": 7.2,
+    "ServiceSpeed": null,
+    "StaffFriendliness": 8.1,
+    "ValueForMoney": 6.8,
+    "OverallSatisfaction": 7.4
+  },
+  {
+    "NO": 4,
+    "ProductQuality": 9.5,
+    "ServiceSpeed": 9.2,
+    "StaffFriendliness": 9.8,
+    "ValueForMoney": 8.9,
+    "OverallSatisfaction": 9.4
+  },
+  {
+    "NO": 5,
+    "ProductQuality": 8.0,
+    "ServiceSpeed": 7.5,
+    "StaffFriendliness": null,
+    "ValueForMoney": 7.8,
+    "OverallSatisfaction": 7.9
+  },
+  {
+    "NO": 6,
+    "ProductQuality": 8.8,
+    "ServiceSpeed": 8.3,
+    "StaffFriendliness": 9.0,
+    "ValueForMoney": 8.1,
+    "OverallSatisfaction": 8.6
+  },
+  {
+    "NO": 7,
+    "ProductQuality": 7.6,
+    "ServiceSpeed": 7.2,
+    "StaffFriendliness": 8.4,
+    "ValueForMoney": 7.0,
+    "OverallSatisfaction": null
+  },
+  {
+    "NO": 8,
+    "ProductQuality": 9.3,
+    "ServiceSpeed": 8.9,
+    "StaffFriendliness": 9.6,
+    "ValueForMoney": 8.7,
+    "OverallSatisfaction": 9.1
+  },
+  {
+    "NO": 9,
+    "ProductQuality": null,
+    "ServiceSpeed": 6.8,
+    "StaffFriendliness": 7.9,
+    "ValueForMoney": 6.5,
+    "OverallSatisfaction": 7.1
+  },
+  {
+    "NO": 10,
+    "ProductQuality": 8.4,
+    "ServiceSpeed": 8.0,
+    "StaffFriendliness": 8.8,
+    "ValueForMoney": 7.9,
+    "OverallSatisfaction": 8.3
+  },
+  {
+    "NO": 11,
+    "ProductQuality": 9.0,
+    "ServiceSpeed": 8.7,
+    "StaffFriendliness": 9.3,
+    "ValueForMoney": 8.5,
+    "OverallSatisfaction": 8.9
+  },
+  {
+    "NO": 12,
+    "ProductQuality": 7.8,
+    "ServiceSpeed": 7.4,
+    "StaffFriendliness": 8.6,
+    "ValueForMoney": null,
+    "OverallSatisfaction": 7.8
+  },
+  {
+    "NO": 13,
+    "ProductQuality": 8.9,
+    "ServiceSpeed": 8.5,
+    "StaffFriendliness": 9.1,
+    "ValueForMoney": 8.3,
+    "OverallSatisfaction": 8.7
+  },
+  {
+    "NO": 14,
+    "ProductQuality": 7.5,
+    "ServiceSpeed": 7.1,
+    "StaffFriendliness": 8.2,
+    "ValueForMoney": 6.9,
+    "OverallSatisfaction": 7.4
+  },
+  {
+    "NO": 15,
+    "ProductQuality": 9.4,
+    "ServiceSpeed": null,
+    "StaffFriendliness": 9.7,
+    "ValueForMoney": 8.8,
+    "OverallSatisfaction": 9.2
+  },
+  {
+    "NO": 16,
+    "ProductQuality": 8.2,
+    "ServiceSpeed": 7.9,
+    "StaffFriendliness": 8.7,
+    "ValueForMoney": 7.7,
+    "OverallSatisfaction": 8.1
+  },
+  {
+    "NO": 17,
+    "ProductQuality": 8.7,
+    "ServiceSpeed": 8.4,
+    "StaffFriendliness": 9.2,
+    "ValueForMoney": 8.0,
+    "OverallSatisfaction": null
+  },
+  {
+    "NO": 18,
+    "ProductQuality": 7.9,
+    "ServiceSpeed": 7.6,
+    "StaffFriendliness": 8.5,
+    "ValueForMoney": 7.4,
+    "OverallSatisfaction": 7.9
+  },
+  {
+    "NO": 19,
+    "ProductQuality": 9.2,
+    "ServiceSpeed": 8.8,
+    "StaffFriendliness": null,
+    "ValueForMoney": 8.6,
+    "OverallSatisfaction": 8.9
+  },
+  {
+    "NO": 20,
+    "ProductQuality": 8.6,
+    "ServiceSpeed": 8.2,
+    "StaffFriendliness": 9.0,
+    "ValueForMoney": 8.1,
+    "OverallSatisfaction": 8.5
+  },
+  {
+    "NO": 21,
+    "ProductQuality": 7.3,
+    "ServiceSpeed": 6.9,
+    "StaffFriendliness": 8.0,
+    "ValueForMoney": 6.7,
+    "OverallSatisfaction": 7.2
+  },
+  {
+    "NO": 22,
+    "ProductQuality": 9.6,
+    "ServiceSpeed": 9.3,
+    "StaffFriendliness": 9.9,
+    "ValueForMoney": null,
+    "OverallSatisfaction": 9.5
+  },
+  {
+    "NO": 23,
+    "ProductQuality": 8.3,
+    "ServiceSpeed": 8.1,
+    "StaffFriendliness": 8.9,
+    "ValueForMoney": 7.8,
+    "OverallSatisfaction": 8.3
+  },
+  {
+    "NO": 24,
+    "ProductQuality": 8.1,
+    "ServiceSpeed": 7.7,
+    "StaffFriendliness": 8.6,
+    "ValueForMoney": 7.6,
+    "OverallSatisfaction": 8.0
+  },
+  {
+    "NO": 25,
+    "ProductQuality": 9.1,
+    "ServiceSpeed": 8.8,
+    "StaffFriendliness": 9.4,
+    "ValueForMoney": 8.4,
+    "OverallSatisfaction": 8.9
+  }
+]

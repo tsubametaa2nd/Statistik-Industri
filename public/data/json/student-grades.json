@@ -1,0 +1,202 @@
+[
+  {
+    "NO": 1,
+    "Matematika": 85,
+    "Fisika": 78,
+    "Kimia": 82,
+    "Biologi": 90,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 2,
+    "Matematika": 92,
+    "Fisika": 88,
+    "Kimia": 85,
+    "Biologi": 87,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 3,
+    "Matematika": 78,
+    "Fisika": null,
+    "Kimia": 75,
+    "Biologi": 80,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 4,
+    "Matematika": 95,
+    "Fisika": 92,
+    "Kimia": 90,
+    "Biologi": 93,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 5,
+    "Matematika": 88,
+    "Fisika": 85,
+    "Kimia": null,
+    "Biologi": 86,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 6,
+    "Matematika": 76,
+    "Fisika": 72,
+    "Kimia": 78,
+    "Biologi": 75,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 7,
+    "Matematika": 90,
+    "Fisika": 87,
+    "Kimia": 88,
+    "Biologi": null,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 8,
+    "Matematika": 83,
+    "Fisika": 80,
+    "Kimia": 82,
+    "Biologi": 84,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 9,
+    "Matematika": null,
+    "Fisika": 91,
+    "Kimia": 89,
+    "Biologi": 90,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 10,
+    "Matematika": 87,
+    "Fisika": 84,
+    "Kimia": 86,
+    "Biologi": 88,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 11,
+    "Matematika": 94,
+    "Fisika": 90,
+    "Kimia": 92,
+    "Biologi": 91,
+    "BahasaInggris": null
+  },
+  {
+    "NO": 12,
+    "Matematika": 80,
+    "Fisika": 77,
+    "Kimia": 79,
+    "Biologi": 82,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 13,
+    "Matematika": 89,
+    "Fisika": 86,
+    "Kimia": 87,
+    "Biologi": 89,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 14,
+    "Matematika": 91,
+    "Fisika": null,
+    "Kimia": 88,
+    "Biologi": 90,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 15,
+    "Matematika": 77,
+    "Fisika": 74,
+    "Kimia": 76,
+    "Biologi": 78,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 16,
+    "Matematika": 86,
+    "Fisika": 83,
+    "Kimia": 85,
+    "Biologi": 87,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 17,
+    "Matematika": 93,
+    "Fisika": 89,
+    "Kimia": null,
+    "Biologi": 92,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 18,
+    "Matematika": 82,
+    "Fisika": 79,
+    "Kimia": 81,
+    "Biologi": 83,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 19,
+    "Matematika": 88,
+    "Fisika": 85,
+    "Kimia": 87,
+    "Biologi": null,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 20,
+    "Matematika": 96,
+    "Fisika": 93,
+    "Kimia": 94,
+    "Biologi": 95,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 21,
+    "Matematika": 84,
+    "Fisika": 81,
+    "Kimia": 83,
+    "Biologi": 85,
+    "BahasaInggris": null
+  },
+  {
+    "NO": 22,
+    "Matematika": 79,
+    "Fisika": 76,
+    "Kimia": 78,
+    "Biologi": 80,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 23,
+    "Matematika": 90,
+    "Fisika": null,
+    "Kimia": 89,
+    "Biologi": 91,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 24,
+    "Matematika": 85,
+    "Fisika": 82,
+    "Kimia": 84,
+    "Biologi": 86,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 25,
+    "Matematika": 92,
+    "Fisika": 89,
+    "Kimia": 90,
+    "Biologi": 91,
+    "BahasaInggris": 93
+  }
+]

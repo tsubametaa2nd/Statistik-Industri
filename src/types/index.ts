@@ -28,6 +28,19 @@ export interface DescriptiveStats {
   category: string;
 }
 
+const DEFAULT_COLORS = [
+  "#3B82F6", // Blue
+  "#8B5CF6", // Purple
+  "#EF4444", // Red
+  "#F59E0B", // Orange
+  "#10B981", // Green
+  "#EC4899", // Pink
+  "#14B8A6", // Teal
+  "#F97316", // Deep Orange
+  "#8B5CF6", // Violet
+  "#06B6D4", // Cyan
+];
+
 export const VARIABLE_COLORS: Record<string, string> = {
   Usability: "#3B82F6",
   "UI/UX": "#8B5CF6",
@@ -35,3 +48,12 @@ export const VARIABLE_COLORS: Record<string, string> = {
   Features: "#F59E0B",
   Satisfaction: "#10B981",
 };
+
+/**
+ * Get color for a variable, with fallback to default colors
+ */
+export function getVariableColor(variable: string, index: number = 0): string {
+  return (
+    VARIABLE_COLORS[variable] || DEFAULT_COLORS[index % DEFAULT_COLORS.length]
+  );
+}

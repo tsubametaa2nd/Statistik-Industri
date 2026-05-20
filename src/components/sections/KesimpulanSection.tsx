@@ -14,8 +14,12 @@ interface KesimpulanSectionProps {
 }
 
 export default function KesimpulanSection({ stats }: KesimpulanSectionProps) {
-  const avgMean = stats.reduce((sum, s) => sum + s.mean, 0) / stats.length;
-  const avgStdDev = stats.reduce((sum, s) => sum + s.stdDev, 0) / stats.length;
+  const nVal = stats[0]?.n || 0;
+  const totalVars = stats.length;
+  const totalDataPoints = nVal * totalVars;
+
+  const avgMean = stats.reduce((sum, s) => sum + s.mean, 0) / totalVars;
+  const avgStdDev = stats.reduce((sum, s) => sum + s.stdDev, 0) / totalVars;
   const totalOutliers = stats.reduce((sum, s) => sum + s.outliers.length, 0);
   const highestStat = stats.reduce((max, s) => (s.mean > max.mean ? s : max));
   const lowestStat = stats.reduce((min, s) => (s.mean < min.mean ? s : min));
@@ -23,100 +27,78 @@ export default function KesimpulanSection({ stats }: KesimpulanSectionProps) {
   const conclusions = [
     {
       Icon: CheckCircle,
-      title: "Kepuasan Pengguna Tinggi",
-      description: `Rata-rata keseluruhan ${avgMean.toFixed(2)} menunjukkan penilaian yang positif dari responden.`,
+      title: "Penilaian Keseluruhan Positif",
+      description: `Rata-rata kumulatif variabel sebesar ${avgMean.toFixed(2)} mengindikasikan tingkat kepuasan/kinerja yang solid secara agregat.`,
       badge: "Positif",
-      badgeColor: "bg-[var(--accent-green)]",
+      badgeColor: "var(--accent-green)",
       iconColor: "text-[var(--accent-green)]",
     },
     {
       Icon: highestStat.mean > 3.8 ? CheckCircle : AlertTriangle,
-      title: `${highestStat.variable} Mendapat Penilaian Tertinggi`,
-      description: `Dengan rata-rata ${highestStat.mean.toFixed(2)}, aspek ini menjadi kekuatan utama aplikasi.`,
+      title: `Kekuatan Utama: ${highestStat.variable}`,
+      description: `Mencatat skor rata-rata tertinggi sebesar ${highestStat.mean.toFixed(2)}, merepresentasikan indikator keunggulan utama.`,
       badge: highestStat.category,
-      badgeColor:
-        highestStat.mean > 3.8
-          ? "bg-[var(--accent-green)]"
-          : "bg-[var(--accent-gold)]",
-      iconColor:
-        highestStat.mean > 3.8
-          ? "text-[var(--accent-green)]"
-          : "text-[var(--accent-gold)]",
+      badgeColor: highestStat.mean > 3.8 ? "var(--accent-green)" : "var(--accent-gold)",
+      iconColor: highestStat.mean > 3.8 ? "text-[var(--accent-green)]" : "text-[var(--accent-gold)]",
     },
     {
       Icon: lowestStat.mean < 3.4 ? AlertTriangle : BarChart3,
-      title: `${lowestStat.variable} Perlu Perhatian`,
-      description: `Dengan rata-rata ${lowestStat.mean.toFixed(2)}, aspek ini memerlukan perbaikan prioritas.`,
+      title: `Prioritas Perbaikan: ${lowestStat.variable}`,
+      description: `Dengan skor rata-rata ${lowestStat.mean.toFixed(2)}, aspek ini menuntut tindakan evaluasi dan peningkatan segera.`,
       badge: lowestStat.category,
-      badgeColor:
-        lowestStat.mean < 3.4
-          ? "bg-[var(--accent-red)]"
-          : "bg-[var(--accent-gold)]",
-      iconColor:
-        lowestStat.mean < 3.4
-          ? "text-[var(--accent-red)]"
-          : "text-[var(--accent-gold)]",
+      badgeColor: lowestStat.mean < 3.4 ? "var(--accent-red)" : "var(--accent-gold)",
+      iconColor: lowestStat.mean < 3.4 ? "text-[var(--accent-red)]" : "text-[var(--accent-gold)]",
     },
     {
       Icon: BarChart3,
-      title: avgStdDev < 0.8 ? "Konsistensi Tinggi" : "Variasi Sedang",
-      description: `Standar deviasi rata-rata ${avgStdDev.toFixed(2)} menunjukkan ${
-        avgStdDev < 0.8 ? "konsensus yang kuat" : "keberagaman pendapat"
-      } di antara responden.`,
-      badge: avgStdDev < 0.8 ? "Konsisten" : "Beragam",
-      badgeColor:
-        avgStdDev < 0.8
-          ? "bg-[var(--accent-green)]"
-          : "bg-[var(--accent-gold)]",
-      iconColor:
-        avgStdDev < 0.8
-          ? "text-[var(--accent-green)]"
-          : "text-[var(--accent-gold)]",
+      title: avgStdDev < 0.8 ? "Konsistensi Persepsi" : "Heterogenitas Persepsi",
+      description: `Standar deviasi rata-rata sebesar ${avgStdDev.toFixed(2)} mencerminkan ${
+        avgStdDev < 0.8 ? "kesamaan pandangan (konsensus)" : "keberagaman opini responden"
+      } yang moderat.`,
+      badge: avgStdDev < 0.8 ? "Konsisten" : "Variatif",
+      badgeColor: avgStdDev < 0.8 ? "var(--accent-green)" : "var(--accent-gold)",
+      iconColor: avgStdDev < 0.8 ? "text-[var(--accent-green)]" : "text-[var(--accent-gold)]",
     },
     {
-      Icon: totalOutliers < 5 ? Search : Zap,
-      title: `${totalOutliers < 5 ? "Minimal" : "Beberapa"} Outlier Terdeteksi`,
-      description: `Sebanyak ${totalOutliers} dari 500 data poin (${((totalOutliers / 500) * 100).toFixed(1)}%) merupakan outlier.`,
-      badge:
-        totalOutliers < 5
-          ? "< 1%"
-          : `${((totalOutliers / 500) * 100).toFixed(1)}%`,
-      badgeColor:
-        totalOutliers < 5
-          ? "bg-[var(--accent-green)]"
-          : "bg-[var(--accent-gold)]",
-      iconColor:
-        totalOutliers < 5
-          ? "text-[var(--accent-green)]"
-          : "text-[var(--accent-gold)]",
+      Icon: totalOutliers / totalDataPoints < 0.02 ? Search : Zap,
+      title: "Identifikasi Data Pencilan (Outliers)",
+      description: `Sebanyak ${totalOutliers} dari total ${totalDataPoints} titik observasi (${((totalOutliers / totalDataPoints) * 100).toFixed(1)}%) terdeteksi sebagai data pencilan ekstrem.`,
+      badge: `${((totalOutliers / totalDataPoints) * 100).toFixed(1)}%`,
+      badgeColor: totalOutliers / totalDataPoints < 0.02 ? "var(--accent-green)" : "var(--accent-gold)",
+      iconColor: totalOutliers / totalDataPoints < 0.02 ? "text-[var(--accent-green)]" : "text-[var(--accent-gold)]",
     },
   ];
 
   return (
-    <section id="kesimpulan" className="max-w-7xl mx-auto px-6 py-20">
-      <SectionTitle number="5.">Kesimpulan</SectionTitle>
+    <section id="kesimpulan" className="max-w-7xl mx-auto px-6 py-20 border-b border-[var(--border)]/40">
+      <SectionTitle number="4.">Kesimpulan Strategis</SectionTitle>
 
       <div className="grid md:grid-cols-2 gap-6">
         {conclusions.map((conclusion, index) => {
           const IconComponent = conclusion.Icon;
           return (
-            <SectionCard key={index}>
+            <SectionCard key={index} className="flex flex-col justify-between">
               <div className="flex items-start gap-4">
-                <IconComponent
-                  className={`w-10 h-10 ${conclusion.iconColor}`}
-                />
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-lg font-semibold">
+                <div className={`p-2 rounded-xl bg-slate-900/60 border border-slate-800 ${conclusion.iconColor}`}>
+                  <IconComponent className="w-6 h-6" />
+                </div>
+                <div className="flex-1 space-y-1">
+                  <div className="flex items-center justify-between gap-3 flex-wrap">
+                    <h3 className="text-sm font-bold text-slate-200">
                       {conclusion.title}
                     </h3>
                     <span
-                      className={`px-2 py-1 rounded text-xs text-white ${conclusion.badgeColor}`}
+                      className="px-2 py-0.5 rounded text-[9px] font-bold font-mono uppercase border"
+                      style={{
+                        backgroundColor: `${conclusion.badgeColor}15`,
+                        color: conclusion.badgeColor,
+                        borderColor: `${conclusion.badgeColor}30`,
+                      }}
                     >
                       {conclusion.badge}
                     </span>
                   </div>
-                  <p className="text-[var(--text-secondary)] text-sm">
+                  <p className="text-[var(--text-secondary)] text-xs leading-relaxed">
                     {conclusion.description}
                   </p>
                 </div>
@@ -127,23 +109,17 @@ export default function KesimpulanSection({ stats }: KesimpulanSectionProps) {
       </div>
 
       <SectionCard className="mt-6">
-        <h3 className="text-lg font-semibold mb-3 text-[var(--accent-blue)]">
-          Ringkasan Eksekutif
+        <h3 className="text-sm font-bold mb-3 text-[var(--accent-blue)] tracking-wide uppercase font-mono">
+          Ringkasan Eksekutif (Executive Summary)
         </h3>
-        <p className="text-[var(--text-secondary)] leading-relaxed">
-          Berdasarkan analisis statistik deskriptif terhadap 100 responden
-          dengan 5 variabel pengukuran, dapat disimpulkan bahwa aplikasi
-          mendapat penilaian yang {avgMean > 3.5 ? "positif" : "cukup baik"}{" "}
-          secara keseluruhan. Aspek{" "}
-          <strong className="text-[var(--text-primary)]">
-            {highestStat.variable}
-          </strong>{" "}
-          menjadi kekuatan utama, sementara{" "}
-          <strong className="text-[var(--text-primary)]">
-            {lowestStat.variable}
-          </strong>{" "}
-          memerlukan perhatian khusus untuk meningkatkan kepuasan pengguna
-          secara menyeluruh.
+        <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+          Berdasarkan hasil analisis deskriptif inferensial terhadap{" "}
+          <strong className="text-slate-200 font-bold font-mono">{nVal}</strong> responden dengan{" "}
+          <strong className="text-slate-200 font-bold font-mono">{totalVars}</strong> variabel pengukuran numerik bebas bias, 
+          secara agregat kinerja sistem dinilai berada pada tingkat yang{" "}
+          <span className="text-[var(--accent-green)] font-bold">{avgMean > 3.5 ? "SANGAT BAIK" : "CUKUP BAIK"}</span>. 
+          Variabel <strong className="text-slate-200 font-bold">{highestStat.variable}</strong> diidentifikasi sebagai pilar kekuatan dominan (skor {highestStat.mean.toFixed(2)}), 
+          sementara variabel <strong className="text-slate-200 font-bold">{lowestStat.variable}</strong> (skor {lowestStat.mean.toFixed(2)}) ditetapkan sebagai area intervensi utama guna meminimalisasi ketimpangan kualitas pelayanan.
         </p>
       </SectionCard>
     </section>

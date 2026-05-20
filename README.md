@@ -1,17 +1,32 @@
 # Laporan Statistik Deskriptif - Aplikasi Web
 
-Aplikasi web interaktif untuk menampilkan analisis statistik deskriptif dari data kuesioner 100 responden dengan 5 variabel pengukuran: **Usability**, **UI/UX**, **Speed**, **Features**, dan **Satisfaction**.
+Aplikasi web interaktif untuk analisis statistik deskriptif dengan **upload data dinamis**. Mendukung format **CSV**, **JSON**, dan **XLSX** untuk analisis data Anda sendiri.
 
 ## 🎯 Fitur Utama
 
-- **Dashboard Interaktif** - Tampilan laporan statistik yang modern dan responsif
-- **Statistik Deskriptif Lengkap** - Mean, Median, Modus, Standar Deviasi, Varians, Skewness, Kurtosis, IQR, dan Outlier
-- **Visualisasi Data**:
+- **📤 Upload Data Dinamis** - Upload file CSV, JSON, atau XLSX dengan drag & drop
+- **✅ Validasi Otomatis** - Validasi format dan konversi data secara otomatis
+- **📊 Dashboard Interaktif** - Tampilan laporan statistik yang modern dan responsif
+- **📈 Statistik Deskriptif Lengkap** - Mean, Median, Modus, Standar Deviasi, Varians, Skewness, Kurtosis, IQR, dan Outlier
+- **📉 Visualisasi Data**:
   - Histogram distribusi frekuensi per variabel
   - Boxplot perbandingan antar variabel
   - Chart analisis mean, variasi, dan outlier
-- **Analisis Otomatis** - Interpretasi data, kesimpulan, dan rekomendasi yang di-generate otomatis
-- **Responsive Design** - Tampilan optimal di desktop, tablet, dan mobile
+- **🤖 Analisis Otomatis** - Interpretasi data, kesimpulan, dan rekomendasi yang di-generate otomatis
+- **📱 Responsive Design** - Tampilan optimal di desktop, tablet, dan mobile
+- **🎨 Warna Dinamis** - Warna otomatis untuk variabel baru
+
+## 🆕 Update Terbaru
+
+### Versi 2.0 - Upload Data Dinamis
+
+- ✅ Hapus data mockup hardcoded
+- ✅ Sistem upload file (CSV, JSON, XLSX)
+- ✅ Parser file dengan validasi
+- ✅ Support variabel dinamis (tidak terbatas pada 5 variabel)
+- ✅ Download sample file
+- ✅ Error handling yang lebih baik
+- ✅ Warna otomatis untuk variabel baru
 
 ## 🛠️ Tech Stack
 
@@ -20,6 +35,9 @@ Aplikasi web interaktif untuk menampilkan analisis statistik deskriptif dari dat
 - **Styling**: Tailwind CSS + CSS Variables
 - **Charts**: Recharts
 - **Icons**: Lucide React
+- **File Parsing**:
+  - PapaParse (CSV)
+  - XLSX (Excel)
 - **PDF Generation**: jsPDF + jspdf-autotable
 - **Font**: Plus Jakarta Sans (Google Fonts)
 
@@ -48,22 +66,62 @@ npm run dev
 
 ## 🚀 Cara Menggunakan
 
-1. **Halaman Utama** akan redirect otomatis ke `/laporan`
-2. **Navigasi** menggunakan navbar sticky di atas atau scroll manual
-3. **Histogram** - Klik tab variabel untuk melihat distribusi masing-masing
-4. **Tabel Statistik** - Toggle "Tampilkan/Sembunyikan Statistik Lanjutan" untuk detail lengkap
+### 1. Upload Data
 
-## 📊 Struktur Data
+1. Buka aplikasi di browser
+2. Drag & drop file atau klik "Pilih File"
+3. Pilih file CSV, JSON, atau XLSX
+4. Tunggu proses validasi
+5. Hasil analisis akan muncul otomatis
 
-Dataset terdiri dari 100 responden dengan 5 variabel skala Likert (1-5):
+### 2. Navigasi
 
-| Variabel     | Deskripsi                               |
-| ------------ | --------------------------------------- |
-| Usability    | Kemudahan penggunaan aplikasi           |
-| UI/UX        | Kualitas desain dan pengalaman pengguna |
-| Speed        | Kecepatan dan responsivitas aplikasi    |
-| Features     | Kelengkapan dan kegunaan fitur          |
-| Satisfaction | Kepuasan keseluruhan pengguna           |
+- Gunakan navbar sticky di atas
+- Atau scroll manual untuk melihat section
+
+### 3. Interaksi
+
+- **Histogram** - Klik tab variabel untuk melihat distribusi
+- **Tabel Statistik** - Toggle untuk detail lengkap
+
+### 4. Download Sample
+
+- Klik tombol "Sample CSV/JSON/XLSX"
+- Edit sesuai data Anda
+- Upload kembali
+
+📖 **Panduan Lengkap**: Lihat [UPLOAD_GUIDE.md](./UPLOAD_GUIDE.md) untuk dokumentasi detail
+
+## 📊 Format Data yang Didukung
+
+### CSV
+
+```csv
+Variabel1,Variabel2,Variabel3
+5,4,3
+4,3,2
+5,4,3
+```
+
+### JSON
+
+```json
+[
+  { "Variabel1": 5, "Variabel2": 4, "Variabel3": 3 },
+  { "Variabel1": 4, "Variabel2": 3, "Variabel3": 2 }
+]
+```
+
+### XLSX
+
+Excel spreadsheet dengan header di baris pertama
+
+**Aturan:**
+
+- Baris pertama = nama variabel (header)
+- Baris berikutnya = data observasi
+- Semua nilai harus numerik
+- Nilai kosong akan diabaikan
 
 ## 📁 Struktur Proyek
 
@@ -74,7 +132,7 @@ src/
 │   ├── page.tsx            # Redirect ke /laporan
 │   ├── globals.css         # Global styles & CSS variables
 │   └── laporan/
-│       └── page.tsx        # Halaman laporan utama
+│       └── page.tsx        # Halaman laporan utama (dengan upload)
 ├── components/
 │   ├── ui/                 # Komponen UI dasar
 │   │   ├── SectionCard.tsx
@@ -83,6 +141,7 @@ src/
 │   ├── layout/
 │   │   └── Navbar.tsx      # Navigation dengan smooth scroll
 │   └── sections/           # Section komponen
+│       ├── FileUploadSection.tsx  # 🆕 Upload component
 │       ├── HeroSection.tsx
 │       ├── DatasetSection.tsx
 │       ├── MetodologiSection.tsx
@@ -93,8 +152,10 @@ src/
 │       ├── KesimpulanSection.tsx
 │       └── RekomendasiSection.tsx
 ├── lib/
-│   ├── data.ts             # Data dummy 100 responden
-│   └── statistics.ts       # Fungsi perhitungan statistik
+│   ├── data.ts             # Data dummy (deprecated)
+│   ├── fileParser.ts       # 🆕 File parsing & validation
+│   ├── statistics.ts       # Fungsi perhitungan statistik
+│   └── pdfGenerator.ts     # PDF export
 └── types/
     └── index.ts            # TypeScript types & interfaces
 ```
@@ -110,6 +171,8 @@ Aplikasi menggunakan tema **"Scientific Dark"** dengan palet warna:
 - **Accent Gold**: `#F59E0B`
 - **Accent Green**: `#10B981`
 - **Accent Red**: `#EF4444`
+
+Warna untuk variabel baru akan dipilih otomatis dari palet yang tersedia.
 
 ## 📈 Metodologi Statistik
 
@@ -129,6 +192,9 @@ Aplikasi menggunakan tema **"Scientific Dark"** dengan palet warna:
 ### Ukuran Bentuk Distribusi
 
 - **Skewness**: Kemencengan distribusi
+  - > 0.5: Positif skew (ekor kanan)
+  - < -0.5: Negatif skew (ekor kiri)
+  - -0.5 to 0.5: Simetris
 - **Kurtosis**: Keruncingan distribusi
 
 ### Deteksi Outlier
@@ -154,3 +220,31 @@ npm start
 # Lint
 npm run lint
 ```
+
+## 🐛 Troubleshooting
+
+### File tidak bisa diupload
+
+- Pastikan format file adalah .csv, .json, .xlsx, atau .xls
+- Cek apakah file tidak kosong
+- Pastikan semua nilai adalah numerik
+
+### Visualisasi tidak muncul
+
+- Refresh halaman
+- Coba upload ulang
+- Pastikan browser mendukung JavaScript
+
+### Error parsing
+
+- Download sample file dan bandingkan format
+- Pastikan header ada di baris pertama
+- Hapus karakter khusus dari data
+
+## 📝 License
+
+MIT License
+
+## 👨‍💻 Developer
+
+Developed with ❤️ using Next.js and TypeScript

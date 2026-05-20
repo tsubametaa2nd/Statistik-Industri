@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import html2canvas from "html2canvas";
 import { DescriptiveStats } from "@/types";
 
 const COLORS = {
@@ -13,6 +14,31 @@ const COLORS = {
   text: [31, 31, 31] as [number, number, number],
   lightGray: [242, 242, 242] as [number, number, number],
 };
+
+/**
+ * Capture element as image using html2canvas
+ */
+async function captureElement(elementId: string): Promise<string | null> {
+  try {
+    const element = document.getElementById(elementId);
+    if (!element) {
+      console.warn(`Element with id "${elementId}" not found`);
+      return null;
+    }
+
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      backgroundColor: "#ffffff",
+      logging: false,
+      useCORS: true,
+    });
+
+    return canvas.toDataURL("image/png");
+  } catch (error) {
+    console.error(`Error capturing element ${elementId}:`, error);
+    return null;
+  }
+}
 
 export async function generatePDFReport(
   stats: DescriptiveStats[],
@@ -133,20 +159,25 @@ export async function generatePDFReport(
   doc.setFillColor(...COLORS.darkBlue);
   doc.rect(0, pageHeight - 25, pageWidth, 25, "F");
 
-  const variables = ["Usability", "UI/UX", "Speed", "Features", "Satisfaction"];
+  const variables = stats.map((s) => s.variable);
   const varColors = [
     [59, 130, 246],
     [139, 92, 246],
     [239, 68, 68],
     [245, 158, 11],
     [16, 185, 129],
+    [236, 72, 153],
+    [20, 184, 166],
+    [249, 115, 22],
   ];
 
-  const varWidth = pageWidth / variables.length;
+  const varWidth = pageWidth / Math.max(variables.length, 5);
   variables.forEach((v, i) => {
     const x = i * varWidth + varWidth / 2;
 
-    doc.setFillColor(...(varColors[i] as [number, number, number]));
+    doc.setFillColor(
+      ...(varColors[i % varColors.length] as [number, number, number]),
+    );
     doc.circle(x, pageHeight - 15, 2, "F");
 
     doc.setFont("times", "bold");
@@ -283,22 +314,16 @@ export async function generatePDFReport(
   y += 10;
 
   // Tabel variabel
-  const variabelData = [
-    ["1", "Usability", "Kemudahan penggunaan antarmuka aplikasi", "Likert 1-5"],
-    [
-      "2",
-      "UI/UX",
-      "Kualitas desain visual dan pengalaman pengguna",
-      "Likert 1-5",
-    ],
-    ["3", "Speed", "Kecepatan respon dan loading aplikasi", "Likert 1-5"],
-    ["4", "Features", "Kelengkapan dan kegunaan fitur aplikasi", "Likert 1-5"],
-    ["5", "Satisfaction", "Kepuasan keseluruhan pengguna", "Likert 1-5"],
-  ];
+  const variabelData = stats.map((stat, index) => [
+    (index + 1).toString(),
+    stat.variable,
+    `Variabel ${stat.variable}`,
+    "Numerik",
+  ]);
 
   autoTable(doc, {
     startY: y,
-    head: [["No", "Variabel", "Definisi Operasional", "Skala"]],
+    head: [["No", "Variabel", "Definisi Operasional", "Tipe Data"]],
     body: variabelData,
     theme: "grid",
     styles: {
@@ -314,8 +339,8 @@ export async function generatePDFReport(
     },
     columnStyles: {
       0: { halign: "center", cellWidth: 15 },
-      1: { cellWidth: 30 },
-      2: { cellWidth: 90 },
+      1: { cellWidth: 35 },
+      2: { cellWidth: 85 },
       3: { halign: "center", cellWidth: 25 },
     },
   });
@@ -329,22 +354,19 @@ export async function generatePDFReport(
   doc.text("2.3 Sampel Data", margin, y);
   y += 10;
 
+  const dataVariables = stats.map((s) => s.variable);
   const sampleData = rawData
     .slice(0, 10)
     .map((row, idx) => [
       (idx + 1).toString(),
-      row.Usability.toString(),
-      row["UI/UX"].toString(),
-      row.Speed.toString(),
-      row.Features.toString(),
-      row.Satisfaction.toString(),
+      ...dataVariables.map((v) =>
+        row[v] !== undefined && row[v] !== null ? row[v].toString() : "-",
+      ),
     ]);
 
   autoTable(doc, {
     startY: y,
-    head: [
-      ["Resp.", "Usability", "UI/UX", "Speed", "Features", "Satisfaction"],
-    ],
+    head: [["Resp.", ...dataVariables]],
     body: sampleData,
     theme: "grid",
     styles: {
@@ -681,13 +703,14 @@ export async function generatePDFReport(
   doc.setFontSize(10);
 
   const totalOutliersAll = stats.reduce((sum, s) => sum + s.outliers.length, 0);
-  const totalDataPoints = stats.length * 100;
-  const outlierPercent = ((totalOutliersAll / totalDataPoints) * 100).toFixed(
-    1,
-  );
+  const totalDataPointsOutlier = stats.length * 100;
+  const outlierPercent = (
+    (totalOutliersAll / totalDataPointsOutlier) *
+    100
+  ).toFixed(1);
 
   const analisisOutlier = [
-    `Deteksi outlier menggunakan metode IQR mengidentifikasi ${totalOutliersAll} nilai ekstrem dari total ${totalDataPoints} data poin (${outlierPercent}%). Distribusi outlier per variabel adalah sebagai berikut:`,
+    `Deteksi outlier menggunakan metode IQR mengidentifikasi ${totalOutliersAll} nilai ekstrem dari total ${totalDataPointsOutlier} data poin (${outlierPercent}%). Distribusi outlier per variabel adalah sebagai berikut:`,
   ];
 
   analisisOutlier.forEach((text) => {
@@ -784,6 +807,90 @@ export async function generatePDFReport(
     }
   });
 
+  // ===== 4.4 VISUALISASI DATA =====
+  // Capture histogram charts
+  console.log("Capturing visualizations for PDF...");
+
+  const histogramImage = await captureElement("histogram-section");
+  const boxplotImage = await captureElement("boxplot-section");
+
+  if (histogramImage || boxplotImage) {
+    doc.addPage();
+    currentPage++;
+    addHeaderFooter(currentPage);
+
+    y = 30;
+
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFont("times", "bold");
+    doc.setFontSize(12);
+    doc.text("4.4 Visualisasi Data", margin, y);
+    y += 10;
+
+    // Histogram
+    if (histogramImage) {
+      doc.setTextColor(...COLORS.text);
+      doc.setFont("times", "normal");
+      doc.setFontSize(10);
+      doc.text("Histogram Distribusi Frekuensi:", margin, y);
+      y += 8;
+
+      const imgWidth = pageWidth - 2 * margin;
+      const imgHeight = 80; // Fixed height for consistency
+
+      doc.addImage(histogramImage, "PNG", margin, y, imgWidth, imgHeight);
+      y += imgHeight + 5;
+
+      doc.setFont("times", "italic");
+      doc.setFontSize(9);
+      doc.setTextColor(100, 100, 100);
+      doc.text(
+        "Gambar 1. Histogram Distribusi Frekuensi Variabel",
+        pageWidth / 2,
+        y,
+        {
+          align: "center",
+        },
+      );
+      y += 10;
+    }
+
+    // Boxplot
+    if (boxplotImage) {
+      // Check if we need a new page
+      if (y > pageHeight - 100) {
+        doc.addPage();
+        currentPage++;
+        addHeaderFooter(currentPage);
+        y = 30;
+      }
+
+      doc.setTextColor(...COLORS.text);
+      doc.setFont("times", "normal");
+      doc.setFontSize(10);
+      doc.text("Boxplot Perbandingan Variabel:", margin, y);
+      y += 8;
+
+      const imgWidth = pageWidth - 2 * margin;
+      const imgHeight = 80;
+
+      doc.addImage(boxplotImage, "PNG", margin, y, imgWidth, imgHeight);
+      y += imgHeight + 5;
+
+      doc.setFont("times", "italic");
+      doc.setFontSize(9);
+      doc.setTextColor(100, 100, 100);
+      doc.text(
+        "Gambar 2. Boxplot Perbandingan Distribusi Antar Variabel",
+        pageWidth / 2,
+        y,
+        {
+          align: "center",
+        },
+      );
+    }
+  }
+
   // ===== BAB 5: KESIMPULAN =====
   doc.addPage();
   currentPage++;
@@ -804,19 +911,20 @@ export async function generatePDFReport(
   const highestStat = stats.reduce((max, s) => (s.mean > max.mean ? s : max));
   const lowestStat = stats.reduce((min, s) => (s.mean < min.mean ? s : min));
   const totalOutliers = stats.reduce((sum, s) => sum + s.outliers.length, 0);
+  const totalDataPoints = stats.length * rawData.length;
 
   doc.setTextColor(...COLORS.text);
   doc.setFont("times", "normal");
   doc.setFontSize(10);
 
   const kesimpulan = [
-    `Berdasarkan analisis statistik deskriptif terhadap 100 responden dengan 5 variabel pengukuran, dapat disimpulkan bahwa aplikasi mendapat penilaian yang ${avgMean > 3.5 ? "positif" : "cukup baik"} secara keseluruhan dengan rata-rata ${avgMean.toFixed(2)}.`,
+    `Berdasarkan analisis statistik deskriptif terhadap ${rawData.length} responden dengan ${stats.length} variabel pengukuran, dapat disimpulkan bahwa data menunjukkan karakteristik yang ${avgMean > 3.5 ? "positif" : "bervariasi"} dengan rata-rata keseluruhan ${avgMean.toFixed(2)}.`,
     "",
-    `Aspek ${highestStat.variable} memperoleh penilaian tertinggi (${highestStat.mean.toFixed(2)}) yang termasuk kategori "${highestStat.category}", menunjukkan kekuatan utama aplikasi.`,
+    `Aspek ${highestStat.variable} memperoleh penilaian tertinggi (${highestStat.mean.toFixed(2)}) yang termasuk kategori "${highestStat.category}", menunjukkan kekuatan utama dari data yang dianalisis.`,
     "",
     `Sebaliknya, ${lowestStat.variable} mendapat penilaian terendah (${lowestStat.mean.toFixed(2)}) yang memerlukan perhatian khusus untuk perbaikan.`,
     "",
-    `Deteksi outlier menunjukkan ${totalOutliers} dari 500 data poin (${((totalOutliers / 500) * 100).toFixed(1)}%) merupakan nilai ekstrem, mengindikasikan ${totalOutliers < 25 ? "konsistensi yang baik" : "variasi pendapat yang cukup beragam"} di antara responden.`,
+    `Deteksi outlier menunjukkan ${totalOutliers} dari ${totalDataPoints} data poin (${((totalOutliers / totalDataPoints) * 100).toFixed(1)}%) merupakan nilai ekstrem, mengindikasikan ${totalOutliers < totalDataPoints * 0.05 ? "konsistensi yang baik" : "variasi yang cukup beragam"} di antara observasi.`,
   ];
 
   kesimpulan.forEach((text) => {

@@ -1,0 +1,242 @@
+[
+  {
+    "NO": 1,
+    "Produktivitas": 85,
+    "Kehadiran": 95,
+    "Kolaborasi": 4,
+    "Inovasi": 3,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 2,
+    "Produktivitas": 78,
+    "Kehadiran": 88,
+    "Kolaborasi": 3,
+    "Inovasi": 4,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 3,
+    "Produktivitas": 92,
+    "Kehadiran": 98,
+    "Kolaborasi": 5,
+    "Inovasi": 5,
+    "KepuasanKerja": 9
+  },
+  {
+    "NO": 4,
+    "Produktivitas": 88,
+    "Kehadiran": null,
+    "Kolaborasi": 4,
+    "Inovasi": 4,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 5,
+    "Produktivitas": 75,
+    "Kehadiran": 82,
+    "Kolaborasi": 3,
+    "Inovasi": null,
+    "KepuasanKerja": 6
+  },
+  {
+    "NO": 6,
+    "Produktivitas": 90,
+    "Kehadiran": 96,
+    "Kolaborasi": 5,
+    "Inovasi": 4,
+    "KepuasanKerja": 9
+  },
+  {
+    "NO": 7,
+    "Produktivitas": 82,
+    "Kehadiran": 90,
+    "Kolaborasi": 4,
+    "Inovasi": 3,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 8,
+    "Produktivitas": null,
+    "Kehadiran": 85,
+    "Kolaborasi": 3,
+    "Inovasi": 3,
+    "KepuasanKerja": 6
+  },
+  {
+    "NO": 9,
+    "Produktivitas": 95,
+    "Kehadiran": 100,
+    "Kolaborasi": 5,
+    "Inovasi": 5,
+    "KepuasanKerja": 10
+  },
+  {
+    "NO": 10,
+    "Produktivitas": 80,
+    "Kehadiran": 87,
+    "Kolaborasi": 4,
+    "Inovasi": 3,
+    "KepuasanKerja": null
+  },
+  {
+    "NO": 11,
+    "Produktivitas": 86,
+    "Kehadiran": 92,
+    "Kolaborasi": 4,
+    "Inovasi": 4,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 12,
+    "Produktivitas": 79,
+    "Kehadiran": 84,
+    "Kolaborasi": 3,
+    "Inovasi": 2,
+    "KepuasanKerja": 6
+  },
+  {
+    "NO": 13,
+    "Produktivitas": 91,
+    "Kehadiran": 97,
+    "Kolaborasi": 5,
+    "Inovasi": 4,
+    "KepuasanKerja": 9
+  },
+  {
+    "NO": 14,
+    "Produktivitas": 83,
+    "Kehadiran": null,
+    "Kolaborasi": 4,
+    "Inovasi": 3,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 15,
+    "Produktivitas": 77,
+    "Kehadiran": 80,
+    "Kolaborasi": 2,
+    "Inovasi": 3,
+    "KepuasanKerja": 5
+  },
+  {
+    "NO": 16,
+    "Produktivitas": 89,
+    "Kehadiran": 94,
+    "Kolaborasi": 4,
+    "Inovasi": null,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 17,
+    "Produktivitas": 94,
+    "Kehadiran": 99,
+    "Kolaborasi": 5,
+    "Inovasi": 5,
+    "KepuasanKerja": 10
+  },
+  {
+    "NO": 18,
+    "Produktivitas": 81,
+    "Kehadiran": 86,
+    "Kolaborasi": 3,
+    "Inovasi": 3,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 19,
+    "Produktivitas": 87,
+    "Kehadiran": 93,
+    "Kolaborasi": 4,
+    "Inovasi": 4,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 20,
+    "Produktivitas": null,
+    "Kehadiran": 91,
+    "Kolaborasi": 4,
+    "Inovasi": 3,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 21,
+    "Produktivitas": 93,
+    "Kehadiran": 98,
+    "Kolaborasi": 5,
+    "Inovasi": 5,
+    "KepuasanKerja": 9
+  },
+  {
+    "NO": 22,
+    "Produktivitas": 76,
+    "Kehadiran": 81,
+    "Kolaborasi": 3,
+    "Inovasi": 2,
+    "KepuasanKerja": null
+  },
+  {
+    "NO": 23,
+    "Produktivitas": 84,
+    "Kehadiran": 89,
+    "Kolaborasi": 4,
+    "Inovasi": 3,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 24,
+    "Produktivitas": 88,
+    "Kehadiran": 95,
+    "Kolaborasi": 4,
+    "Inovasi": 4,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 25,
+    "Produktivitas": 90,
+    "Kehadiran": null,
+    "Kolaborasi": 5,
+    "Inovasi": 4,
+    "KepuasanKerja": 9
+  },
+  {
+    "NO": 26,
+    "Produktivitas": 82,
+    "Kehadiran": 88,
+    "Kolaborasi": 3,
+    "Inovasi": 3,
+    "KepuasanKerja": 7
+  },
+  {
+    "NO": 27,
+    "Produktivitas": 96,
+    "Kehadiran": 100,
+    "Kolaborasi": 5,
+    "Inovasi": 5,
+    "KepuasanKerja": 10
+  },
+  {
+    "NO": 28,
+    "Produktivitas": 78,
+    "Kehadiran": 83,
+    "Kolaborasi": 3,
+    "Inovasi": null,
+    "KepuasanKerja": 6
+  },
+  {
+    "NO": 29,
+    "Produktivitas": 85,
+    "Kehadiran": 92,
+    "Kolaborasi": 4,
+    "Inovasi": 4,
+    "KepuasanKerja": 8
+  },
+  {
+    "NO": 30,
+    "Produktivitas": 91,
+    "Kehadiran": 96,
+    "Kolaborasi": 5,
+    "Inovasi": 4,
+    "KepuasanKerja": 9
+  }
+]

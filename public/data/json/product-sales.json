@@ -1,0 +1,162 @@
+[
+  {
+    "NO": 1,
+    "UnitsSold": 145,
+    "Revenue": 7250,
+    "CustomerRating": 4.2,
+    "ReturnRate": 3.5,
+    "MarketingSpend": 1200
+  },
+  {
+    "NO": 2,
+    "UnitsSold": 230,
+    "Revenue": 11500,
+    "CustomerRating": 4.7,
+    "ReturnRate": 2.1,
+    "MarketingSpend": 1800
+  },
+  {
+    "NO": 3,
+    "UnitsSold": 98,
+    "Revenue": 4900,
+    "CustomerRating": 3.8,
+    "ReturnRate": null,
+    "MarketingSpend": 900
+  },
+  {
+    "NO": 4,
+    "UnitsSold": 312,
+    "Revenue": 15600,
+    "CustomerRating": 4.9,
+    "ReturnRate": 1.5,
+    "MarketingSpend": 2500
+  },
+  {
+    "NO": 5,
+    "UnitsSold": 178,
+    "Revenue": null,
+    "CustomerRating": 4.3,
+    "ReturnRate": 2.8,
+    "MarketingSpend": 1400
+  },
+  {
+    "NO": 6,
+    "UnitsSold": 205,
+    "Revenue": 10250,
+    "CustomerRating": 4.5,
+    "ReturnRate": 2.4,
+    "MarketingSpend": 1650
+  },
+  {
+    "NO": 7,
+    "UnitsSold": 156,
+    "Revenue": 7800,
+    "CustomerRating": null,
+    "ReturnRate": 3.2,
+    "MarketingSpend": 1300
+  },
+  {
+    "NO": 8,
+    "UnitsSold": 267,
+    "Revenue": 13350,
+    "CustomerRating": 4.8,
+    "ReturnRate": 1.8,
+    "MarketingSpend": 2100
+  },
+  {
+    "NO": 9,
+    "UnitsSold": null,
+    "Revenue": 6200,
+    "CustomerRating": 4.0,
+    "ReturnRate": 3.8,
+    "MarketingSpend": 1050
+  },
+  {
+    "NO": 10,
+    "UnitsSold": 189,
+    "Revenue": 9450,
+    "CustomerRating": 4.4,
+    "ReturnRate": 2.6,
+    "MarketingSpend": 1500
+  },
+  {
+    "NO": 11,
+    "UnitsSold": 245,
+    "Revenue": 12250,
+    "CustomerRating": 4.6,
+    "ReturnRate": 2.2,
+    "MarketingSpend": null
+  },
+  {
+    "NO": 12,
+    "UnitsSold": 134,
+    "Revenue": 6700,
+    "CustomerRating": 3.9,
+    "ReturnRate": 4.1,
+    "MarketingSpend": 1100
+  },
+  {
+    "NO": 13,
+    "UnitsSold": 298,
+    "Revenue": 14900,
+    "CustomerRating": 4.8,
+    "ReturnRate": 1.6,
+    "MarketingSpend": 2300
+  },
+  {
+    "NO": 14,
+    "UnitsSold": 167,
+    "Revenue": 8350,
+    "CustomerRating": 4.1,
+    "ReturnRate": null,
+    "MarketingSpend": 1350
+  },
+  {
+    "NO": 15,
+    "UnitsSold": 223,
+    "Revenue": 11150,
+    "CustomerRating": 4.5,
+    "ReturnRate": 2.3,
+    "MarketingSpend": 1750
+  },
+  {
+    "NO": 16,
+    "UnitsSold": 142,
+    "Revenue": 7100,
+    "CustomerRating": 3.7,
+    "ReturnRate": 4.5,
+    "MarketingSpend": 1150
+  },
+  {
+    "NO": 17,
+    "UnitsSold": 281,
+    "Revenue": null,
+    "CustomerRating": 4.7,
+    "ReturnRate": 1.9,
+    "MarketingSpend": 2200
+  },
+  {
+    "NO": 18,
+    "UnitsSold": 195,
+    "Revenue": 9750,
+    "CustomerRating": 4.4,
+    "ReturnRate": 2.7,
+    "MarketingSpend": 1550
+  },
+  {
+    "NO": 19,
+    "UnitsSold": 256,
+    "Revenue": 12800,
+    "CustomerRating": 4.6,
+    "ReturnRate": 2.0,
+    "MarketingSpend": 1950
+  },
+  {
+    "NO": 20,
+    "UnitsSold": 173,
+    "Revenue": 8650,
+    "CustomerRating": null,
+    "ReturnRate": 3.0,
+    "MarketingSpend": 1400
+  }
+]

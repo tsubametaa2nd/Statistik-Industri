@@ -1,0 +1,202 @@
+[
+  {
+    "NO": 1,
+    "PageViews": 1250,
+    "UniqueVisitors": 890,
+    "BounceRate": 45,
+    "AvgSessionDuration": 180,
+    "ConversionRate": 3.2
+  },
+  {
+    "NO": 2,
+    "PageViews": 2100,
+    "UniqueVisitors": 1450,
+    "BounceRate": 38,
+    "AvgSessionDuration": 240,
+    "ConversionRate": 4.5
+  },
+  {
+    "NO": 3,
+    "PageViews": 980,
+    "UniqueVisitors": null,
+    "BounceRate": 52,
+    "AvgSessionDuration": 150,
+    "ConversionRate": 2.8
+  },
+  {
+    "NO": 4,
+    "PageViews": 3200,
+    "UniqueVisitors": 2100,
+    "BounceRate": 32,
+    "AvgSessionDuration": 310,
+    "ConversionRate": 5.6
+  },
+  {
+    "NO": 5,
+    "PageViews": 1580,
+    "UniqueVisitors": 1120,
+    "BounceRate": null,
+    "AvgSessionDuration": 195,
+    "ConversionRate": 3.9
+  },
+  {
+    "NO": 6,
+    "PageViews": 1890,
+    "UniqueVisitors": 1340,
+    "BounceRate": 41,
+    "AvgSessionDuration": 220,
+    "ConversionRate": 4.1
+  },
+  {
+    "NO": 7,
+    "PageViews": 2450,
+    "UniqueVisitors": 1680,
+    "BounceRate": 35,
+    "AvgSessionDuration": 275,
+    "ConversionRate": null
+  },
+  {
+    "NO": 8,
+    "PageViews": 1120,
+    "UniqueVisitors": 820,
+    "BounceRate": 48,
+    "AvgSessionDuration": 165,
+    "ConversionRate": 2.9
+  },
+  {
+    "NO": 9,
+    "PageViews": null,
+    "UniqueVisitors": 1890,
+    "BounceRate": 29,
+    "AvgSessionDuration": 295,
+    "ConversionRate": 5.2
+  },
+  {
+    "NO": 10,
+    "PageViews": 1750,
+    "UniqueVisitors": 1250,
+    "BounceRate": 42,
+    "AvgSessionDuration": 210,
+    "ConversionRate": 3.8
+  },
+  {
+    "NO": 11,
+    "PageViews": 2890,
+    "UniqueVisitors": 1950,
+    "BounceRate": 33,
+    "AvgSessionDuration": 285,
+    "ConversionRate": 5.0
+  },
+  {
+    "NO": 12,
+    "PageViews": 1340,
+    "UniqueVisitors": 980,
+    "BounceRate": 46,
+    "AvgSessionDuration": null,
+    "ConversionRate": 3.3
+  },
+  {
+    "NO": 13,
+    "PageViews": 2150,
+    "UniqueVisitors": 1520,
+    "BounceRate": 37,
+    "AvgSessionDuration": 250,
+    "ConversionRate": 4.4
+  },
+  {
+    "NO": 14,
+    "PageViews": 1680,
+    "UniqueVisitors": 1180,
+    "BounceRate": 44,
+    "AvgSessionDuration": 200,
+    "ConversionRate": 3.6
+  },
+  {
+    "NO": 15,
+    "PageViews": 3450,
+    "UniqueVisitors": null,
+    "BounceRate": 28,
+    "AvgSessionDuration": 320,
+    "ConversionRate": 6.1
+  },
+  {
+    "NO": 16,
+    "PageViews": 1450,
+    "UniqueVisitors": 1050,
+    "BounceRate": 47,
+    "AvgSessionDuration": 175,
+    "ConversionRate": 3.1
+  },
+  {
+    "NO": 17,
+    "PageViews": 2320,
+    "UniqueVisitors": 1620,
+    "BounceRate": 36,
+    "AvgSessionDuration": 265,
+    "ConversionRate": 4.7
+  },
+  {
+    "NO": 18,
+    "PageViews": 1920,
+    "UniqueVisitors": 1380,
+    "BounceRate": null,
+    "AvgSessionDuration": 230,
+    "ConversionRate": 4.0
+  },
+  {
+    "NO": 19,
+    "PageViews": 2680,
+    "UniqueVisitors": 1850,
+    "BounceRate": 34,
+    "AvgSessionDuration": 280,
+    "ConversionRate": 4.9
+  },
+  {
+    "NO": 20,
+    "PageViews": 1560,
+    "UniqueVisitors": 1140,
+    "BounceRate": 43,
+    "AvgSessionDuration": 190,
+    "ConversionRate": null
+  },
+  {
+    "NO": 21,
+    "PageViews": 2980,
+    "UniqueVisitors": 2050,
+    "BounceRate": 31,
+    "AvgSessionDuration": 300,
+    "ConversionRate": 5.4
+  },
+  {
+    "NO": 22,
+    "PageViews": 1280,
+    "UniqueVisitors": 920,
+    "BounceRate": 49,
+    "AvgSessionDuration": 160,
+    "ConversionRate": 2.7
+  },
+  {
+    "NO": 23,
+    "PageViews": 2240,
+    "UniqueVisitors": 1580,
+    "BounceRate": 38,
+    "AvgSessionDuration": null,
+    "ConversionRate": 4.3
+  },
+  {
+    "NO": 24,
+    "PageViews": 1820,
+    "UniqueVisitors": 1290,
+    "BounceRate": 40,
+    "AvgSessionDuration": 215,
+    "ConversionRate": 3.7
+  },
+  {
+    "NO": 25,
+    "PageViews": 3120,
+    "UniqueVisitors": 2180,
+    "BounceRate": 30,
+    "AvgSessionDuration": 305,
+    "ConversionRate": 5.5
+  }
+]

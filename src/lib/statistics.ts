@@ -128,9 +128,47 @@ export function computeStats(
 export function computeAllStats(
   rawData: Record<string, number>[],
 ): DescriptiveStats[] {
-  const variables = ["Usability", "UI/UX", "Speed", "Features", "Satisfaction"];
+  if (!rawData || rawData.length === 0) {
+    return [];
+  }
+
+  // Get all unique variables from the data
+  const variablesSet = new Set<string>();
+  rawData.forEach((row) => {
+    Object.keys(row).forEach((key) => variablesSet.add(key));
+  });
+
+  const variables = Array.from(variablesSet);
+
   return variables.map((variable) => {
-    const data = rawData.map((row) => row[variable]);
+    const data = rawData
+      .map((row) => row[variable])
+      .filter((val) => val !== undefined && val !== null && !isNaN(val));
+
+    if (data.length === 0) {
+      // Return default stats if no valid data
+      return {
+        variable,
+        n: 0,
+        mean: 0,
+        median: 0,
+        mode: 0,
+        min: 0,
+        max: 0,
+        range: 0,
+        variance: 0,
+        stdDev: 0,
+        skewness: 0,
+        kurtosis: 0,
+        q1: 0,
+        q3: 0,
+        iqr: 0,
+        outliers: [],
+        interpretation: "Tidak ada data",
+        category: "N/A",
+      };
+    }
+
     return computeStats(variable, data);
   });
 }
