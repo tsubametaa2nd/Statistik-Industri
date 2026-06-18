@@ -172,8 +172,7 @@ export async function generatePDFReport(
 
   const infoItems = [
     ["Jenis Laporan", mode === "deskriptif" ? "Analisis Statistik Deskriptif" : "Analisis Variansi (ANOVA)"],
-    ["Institusi", "Universitas Teknologi Digital"],
-    ["Program Studi", "Teknik Informatika / Statistika"],
+    ["Program Studi", "Sistem Informasi"],
     ["Semester", semesterStr],
     ["Tanggal Ekspor", currentDateFormatted],
     ["Ukuran Sampel", `${rawData.length} Responden / Observasi`],
