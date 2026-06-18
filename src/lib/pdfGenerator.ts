@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import html2canvas from "html2canvas";
-import { DescriptiveStats } from "@/types";
+import { DescriptiveStats, AnovaResult } from "@/types";
 
 const COLORS = {
   darkBlue: [13, 38, 89] as [number, number, number],
@@ -43,6 +43,8 @@ async function captureElement(elementId: string): Promise<string | null> {
 export async function generatePDFReport(
   stats: DescriptiveStats[],
   rawData: Record<string, number>[],
+  anovaData: AnovaResult | null,
+  mode: "deskriptif" | "anova",
 ) {
   const doc = new jsPDF({
     orientation: "portrait",
@@ -55,6 +57,20 @@ export async function generatePDFReport(
   const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 20;
 
+  // Dynamic date helpers
+  const currentYear = new Date().getFullYear();
+  const semesterStr = `Genap ${currentYear - 1}/${currentYear}`;
+  const currentDateFormatted = new Date().toLocaleDateString("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  const reportTitle =
+    mode === "deskriptif"
+      ? "LAPORAN STATISTIK DESKRIPTIF"
+      : "LAPORAN ANALISIS VARIANSI (ANOVA)";
+
   // Helper function untuk add header/footer
   const addHeaderFooter = (pageNum: number) => {
     if (pageNum > 1) {
@@ -66,7 +82,13 @@ export async function generatePDFReport(
       doc.setFontSize(8);
       doc.setTextColor(...COLORS.darkBlue);
       doc.setFont("times", "bold");
-      doc.text("Laporan Statistik Deskriptif Aplikasi", margin, 12);
+      doc.text(
+        mode === "deskriptif"
+          ? "Laporan Analisis Statistik Deskriptif"
+          : "Laporan Analisis Variansi (ANOVA)",
+        margin,
+        12,
+      );
 
       doc.setFont("times", "normal");
       doc.setTextColor(...COLORS.midBlue);
@@ -86,8 +108,12 @@ export async function generatePDFReport(
       });
 
       doc.setFontSize(7);
-      doc.text("Statistika Deskriptif", margin, pageHeight - 10);
-      doc.text("Genap 2024/2025", pageWidth - margin, pageHeight - 10, {
+      doc.text(
+        mode === "deskriptif" ? "Statistika Deskriptif" : "Uji Hipotesis ANOVA",
+        margin,
+        pageHeight - 10,
+      );
+      doc.text(semesterStr, pageWidth - margin, pageHeight - 10, {
         align: "right",
       });
     }
@@ -104,16 +130,27 @@ export async function generatePDFReport(
   // Title
   doc.setTextColor(255, 255, 255);
   doc.setFont("times", "bold");
-  doc.setFontSize(24);
-  doc.text("ANALISIS STATISTIK", pageWidth / 2, 35, { align: "center" });
-  doc.text("DESKRIPTIF APLIKASI", pageWidth / 2, 45, { align: "center" });
+  doc.setFontSize(22);
+  
+  if (mode === "deskriptif") {
+    doc.text("ANALISIS STATISTIK", pageWidth / 2, 32, { align: "center" });
+    doc.text("DESKRIPTIF DATASET", pageWidth / 2, 42, { align: "center" });
+  } else {
+    doc.text("ANALISIS VARIANSI (ANOVA)", pageWidth / 2, 32, { align: "center" });
+    doc.text("KOMPARATIF KELOMPOK", pageWidth / 2, 42, { align: "center" });
+  }
 
-  doc.setFontSize(14);
+  doc.setFontSize(12);
   doc.setFont("times", "normal");
   doc.setTextColor(217, 232, 247);
-  doc.text("Studi Kepuasan Pengguna Berbasis Kuesioner", pageWidth / 2, 55, {
-    align: "center",
-  });
+  doc.text(
+    mode === "deskriptif"
+      ? "Studi Profil & Distribusi Penilaian Observasi"
+      : "Studi Komparasi & Pengujian Perbedaan Rata-rata Kelompok",
+    pageWidth / 2,
+    52,
+    { align: "center" },
+  );
 
   // Info box
   const boxY = 100;
@@ -134,12 +171,12 @@ export async function generatePDFReport(
   doc.setTextColor(...COLORS.text);
 
   const infoItems = [
-    ["Mata Kuliah", "Statistika dan Probabilitas"],
+    ["Jenis Laporan", mode === "deskriptif" ? "Analisis Statistik Deskriptif" : "Analisis Variansi (ANOVA)"],
     ["Institusi", "Universitas Teknologi Digital"],
-    ["Program Studi", "Teknik Informatika"],
-    ["Semester", "Genap 2024/2025"],
-    ["Penyusun", "Tim Peneliti"],
-    ["Dosen Pembimbing", "Nama Dosen, M.Kom."],
+    ["Program Studi", "Teknik Informatika / Statistika"],
+    ["Semester", semesterStr],
+    ["Tanggal Ekspor", currentDateFormatted],
+    ["Ukuran Sampel", `${rawData.length} Responden / Observasi`],
   ];
 
   let infoY = boxY + 12;
@@ -188,7 +225,7 @@ export async function generatePDFReport(
 
   doc.setFontSize(9);
   doc.setTextColor(153, 178, 230);
-  doc.text("2025", pageWidth - margin, pageHeight - 8, { align: "right" });
+  doc.text(currentYear.toString(), pageWidth - margin, pageHeight - 8, { align: "right" });
 
   // ===== BAB 1: PENDAHULUAN =====
   doc.addPage();
@@ -197,7 +234,6 @@ export async function generatePDFReport(
 
   let y = 30;
 
-  // Bab header
   doc.setFillColor(...COLORS.darkBlue);
   doc.rect(margin, y, pageWidth - 2 * margin, 12, "F");
   doc.setTextColor(255, 255, 255);
@@ -217,11 +253,18 @@ export async function generatePDFReport(
   doc.setFont("times", "normal");
   doc.setFontSize(10);
 
-  const latarBelakang = [
-    "Perkembangan teknologi aplikasi mobile telah mendorong peningkatan kebutuhan akan evaluasi kualitas dari perspektif pengguna. Penilaian pengguna terhadap aspek-aspek seperti kemudahan penggunaan (usability), antarmuka pengguna (UI/UX), kecepatan (speed), fitur yang tersedia (features), serta kepuasan keseluruhan (satisfaction) menjadi indikator penting dalam pengembangan produk digital yang berorientasi pengguna.",
-    "",
-    "Untuk memperoleh gambaran objektif terhadap kondisi tersebut, diperlukan pendekatan analisis kuantitatif yang sistematis. Statistik deskriptif menyediakan kerangka metodologis untuk meringkas, menginterpretasikan, dan memvisualisasikan data secara efektif sehingga dapat dijadikan dasar pengambilan keputusan.",
-  ];
+  const latarBelakang =
+    mode === "deskriptif"
+      ? [
+          "Evaluasi kualitas variabel-variabel kuantitatif dalam sebuah dataset merupakan instrumen penting bagi proses analisis ilmiah dan pengambilan keputusan. Untuk memperoleh gambaran objektif terhadap karakteristik data dari responden, diperlukan pendekatan analisis kuantitatif deskriptif.",
+          "",
+          "Statistik deskriptif menyediakan kerangka metodologis untuk meringkas, menginterpretasikan, dan memvisualisasikan data (menggunakan histogram dan boxplot) secara efektif sehingga pola sebaran, keragaman opini, dan nilai ekstrem (outlier) dapat dipahami dengan mudah.",
+        ]
+      : [
+          "Dalam analisis dataset kuantitatif yang terdiri dari beberapa kelompok atau variabel pengukuran (seperti aspek kualitas produk atau penilaian kinerja), membandingkan rata-rata secara individu tidaklah cukup untuk membuktikan perbedaan ilmiah secara valid.",
+          "",
+          "Uji Analisis Variansi (ANOVA) satu arah menyediakan landasan teoretis untuk menguji hipotesis nol secara simultan bahwa tidak ada perbedaan rata-rata di antara semua kelompok yang dianalisis. Bila pengujian ini terbukti signifikan, dilanjutkan dengan perbandingan berpasangan (post-hoc) menggunakan koreksi Bonferroni untuk mengidentifikasi variabel spesifik mana yang mengalami kesenjangan skor secara nyata.",
+        ];
 
   latarBelakang.forEach((text) => {
     if (text === "") {
@@ -246,14 +289,21 @@ export async function generatePDFReport(
   doc.setFont("times", "normal");
   doc.setFontSize(10);
 
-  const tujuan = [
-    "Menghitung ukuran pemusatan data (mean, median, modus) untuk setiap variabel.",
-    "Mengukur penyebaran data (standar deviasi, varians, range, IQR).",
-    "Mengidentifikasi bentuk distribusi data (skewness dan kurtosis).",
-    "Mendeteksi data pencilan (outlier) menggunakan metode IQR.",
-    "Menyajikan visualisasi data dalam bentuk histogram dan boxplot.",
-    "Memberikan interpretasi dan rekomendasi berbasis temuan statistik.",
-  ];
+  const tujuan =
+    mode === "deskriptif"
+      ? [
+          "Menghitung ukuran pemusatan data (mean, median, modus) untuk setiap variabel.",
+          "Mengukur tingkat penyebaran data (standar deviasi, varians, rentang, dan interquartile range).",
+          "Mengidentifikasi bentuk distribusi data melalui nilai skewness dan kurtosis.",
+          "Mendeteksi keberadaan pencilan data (outliers) dengan batas pagar luar Tukey.",
+          "Menyajikan visualisasi distribusi frekuensi menggunakan grafik histogram dan boxplot.",
+        ]
+      : [
+          "Menguji secara statistik apakah terdapat perbedaan rata-rata penilaian yang signifikan di antara seluruh variabel.",
+          "Menghitung nilai F-hitung dan membandingkannya terhadap distribusi F teoritis guna memperoleh p-value.",
+          "Menganalisis perbandingan berpasangan (post-hoc) t-test di antara variabel-variabel dengan koreksi Bonferroni.",
+          "Menyajikan visualisasi interval rata-rata beserta rentang Confidence Interval 95% untuk mendeteksi tumpang tindih persepsi.",
+        ];
 
   tujuan.forEach((t) => {
     const lines = doc.splitTextToSize(`• ${t}`, pageWidth - 2 * margin - 5);
@@ -268,7 +318,6 @@ export async function generatePDFReport(
 
   y = 30;
 
-  // Bab header
   doc.setFillColor(...COLORS.darkBlue);
   doc.rect(margin, y, pageWidth - 2 * margin, 12, "F");
   doc.setTextColor(255, 255, 255);
@@ -289,9 +338,9 @@ export async function generatePDFReport(
   doc.setFontSize(10);
 
   const deskripsiDataset = [
-    "Dataset penelitian ini terdiri dari 100 responden yang memberikan penilaian terhadap aplikasi mobile menggunakan skala Likert 1-5. Data dikumpulkan melalui kuesioner online selama periode Januari-Maret 2026.",
+    `Dataset penelitian ini terdiri dari ${rawData.length} responden/observasi yang telah divalidasi dan dikonversi ke dalam format numerik. Pengambilan sampel dilakukan untuk mengukur penilaian terhadap beberapa indikator utama secara kuantitatif.`,
     "",
-    "Setiap responden memberikan penilaian terhadap 5 aspek utama aplikasi, yaitu: Usability (kemudahan penggunaan), UI/UX (kualitas desain dan pengalaman pengguna), Speed (kecepatan dan responsivitas), Features (kelengkapan fitur), dan Satisfaction (kepuasan keseluruhan).",
+    `Setiap observasi memberikan skor terhadap ${variables.length} aspek penelitian, yaitu: ${variables.join(", ")}. Nilai observasi dianalisis secara komparatif untuk mendalami parameter statistik deskriptif maupun inferensial kelompok.`,
   ];
 
   deskripsiDataset.forEach((text) => {
@@ -313,11 +362,10 @@ export async function generatePDFReport(
   doc.text("2.2 Variabel Penelitian", margin, y);
   y += 10;
 
-  // Tabel variabel
   const variabelData = stats.map((stat, index) => [
     (index + 1).toString(),
     stat.variable,
-    `Variabel ${stat.variable}`,
+    `Penilaian pengguna terhadap indikator ${stat.variable}`,
     "Numerik",
   ]);
 
@@ -392,7 +440,6 @@ export async function generatePDFReport(
 
   y = 30;
 
-  // Bab header
   doc.setFillColor(...COLORS.darkBlue);
   doc.rect(margin, y, pageWidth - 2 * margin, 12, "F");
   doc.setTextColor(255, 255, 255);
@@ -402,120 +449,143 @@ export async function generatePDFReport(
 
   y += 20;
 
-  // 3.1 Statistik Deskriptif
-  doc.setTextColor(...COLORS.midBlue);
-  doc.setFontSize(12);
-  doc.text("3.1 Statistik Deskriptif", margin, y);
-  y += 8;
+  if (mode === "deskriptif") {
+    // 3.1 Statistik Deskriptif
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFontSize(12);
+    doc.text("3.1 Statistik Deskriptif", margin, y);
+    y += 8;
 
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
+    doc.setTextColor(...COLORS.text);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
 
-  const metodologiStats = [
-    "Statistik deskriptif digunakan untuk meringkas dan mendeskripsikan karakteristik data. Ukuran-ukuran yang digunakan meliputi:",
-    "",
-    "a) Ukuran Pemusatan Data:",
-    "   - Mean (rata-rata): jumlah semua nilai dibagi banyaknya data",
-    "   - Median: nilai tengah setelah data diurutkan",
-    "   - Modus: nilai yang paling sering muncul",
-    "",
-    "b) Ukuran Penyebaran Data:",
-    "   - Range: selisih antara nilai maksimum dan minimum",
-    "   - Varians: rata-rata kuadrat simpangan dari mean",
-    "   - Standar Deviasi: akar kuadrat dari varians",
-    "   - IQR (Interquartile Range): selisih antara Q3 dan Q1",
-    "",
-    "c) Ukuran Bentuk Distribusi:",
-    "   - Skewness: mengukur kemencengan distribusi data",
-    "   - Kurtosis: mengukur keruncingan distribusi data",
-  ];
+    const metodologiStats = [
+      "Statistik deskriptif digunakan untuk meringkas dan mendeskripsikan karakteristik data observasi. Ukuran-ukuran yang dihitung meliputi:",
+      "",
+      "a) Ukuran Pemusatan Data:",
+      "   - Mean (rata-rata): jumlah semua nilai dibagi banyaknya data observasi.",
+      "   - Median: nilai tengah setelah data diurutkan dari kecil ke besar.",
+      "   - Modus: nilai yang memiliki frekuensi pemunculan tertinggi.",
+      "",
+      "b) Ukuran Penyebaran Data:",
+      "   - Rentang (Range): selisih antara nilai maksimum dan minimum.",
+      "   - Varians: rata-rata kuadrat simpangan dari nilai mean.",
+      "   - Standar Deviasi: akar kuadrat dari varians, menunjukkan dispersi data asli.",
+      "   - IQR (Interquartile Range): selisih nilai Q3 dan Q1.",
+      "",
+      "c) Ukuran Bentuk Distribusi:",
+      "   - Skewness: derajat ketidaksimetrisan sebaran data di sekitar mean.",
+      "   - Kurtosis: derajat keruncingan kurva distribusi frekuensi dibanding normal.",
+    ];
 
-  metodologiStats.forEach((text) => {
-    if (text === "") {
-      y += 4;
-    } else {
-      const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-      doc.text(lines, margin, y);
-      y += lines.length * 5 + 2;
-    }
-  });
+    metodologiStats.forEach((text) => {
+      if (text === "") {
+        y += 4;
+      } else {
+        const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
+        doc.text(lines, margin, y);
+        y += lines.length * 5 + 2;
+      }
+    });
 
-  y += 5;
+    y += 5;
 
-  // 3.2 Visualisasi Data
-  doc.setTextColor(...COLORS.midBlue);
-  doc.setFont("times", "bold");
-  doc.setFontSize(12);
-  doc.text("3.2 Visualisasi Data", margin, y);
-  y += 8;
+    // 3.2 Visualisasi Data
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFont("times", "bold");
+    doc.setFontSize(12);
+    doc.text("3.2 Visualisasi Data", margin, y);
+    y += 8;
 
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
+    doc.setTextColor(...COLORS.text);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
 
-  const metodologiVis = [
-    "Visualisasi data dilakukan menggunakan dua jenis grafik utama:",
-    "",
-    "a) Histogram: menampilkan distribusi frekuensi data untuk setiap variabel. Histogram membantu mengidentifikasi pola distribusi, nilai yang paling sering muncul, dan bentuk sebaran data.",
-    "",
-    "b) Boxplot: menampilkan ringkasan lima angka (minimum, Q1, median, Q3, maksimum) dan outlier. Boxplot memudahkan perbandingan distribusi antar variabel dan identifikasi nilai ekstrem.",
-  ];
+    const metodologiVis = [
+      "Visualisasi data dilakukan menggunakan dua jenis grafik utama:",
+      "",
+      "a) Histogram: menampilkan distribusi frekuensi sebaran data ke dalam kelas-kelas interval, berguna untuk mengidentifikasi kemiringan (skewness) sebaran.",
+      "",
+      "b) Boxplot: menggambarkan pemusatan kuartil bawah (Q1), median (Q2), kuartil atas (Q3), rentang whiskers, dan pencilan ekstrem secara visual.",
+    ];
 
-  metodologiVis.forEach((text) => {
-    if (text === "") {
-      y += 4;
-    } else {
-      const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-      doc.text(lines, margin, y);
-      y += lines.length * 5 + 2;
-    }
-  });
+    metodologiVis.forEach((text) => {
+      if (text === "") {
+        y += 4;
+      } else {
+        const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
+        doc.text(lines, margin, y);
+        y += lines.length * 5 + 2;
+      }
+    });
+  } else {
+    // ANOVA Metodologi
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFontSize(12);
+    doc.text("3.1 Analisis Variansi (ANOVA One-Way)", margin, y);
+    y += 8;
 
-  y += 5;
+    doc.setTextColor(...COLORS.text);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
 
-  // 3.3 Deteksi Outlier
-  doc.setTextColor(...COLORS.midBlue);
-  doc.setFont("times", "bold");
-  doc.setFontSize(12);
-  doc.text("3.3 Deteksi Outlier", margin, y);
-  y += 8;
+    const metodologiAnova = [
+      "Uji ANOVA satu arah digunakan untuk membandingkan rata-rata dari k kelompok independen kuantitatif guna melihat apakah kelompok-kelompok tersebut ditarik dari populasi dengan mean yang sama. Uji ini membagi variabilitas total data menjadi dua bagian:",
+      "",
+      "1. Variabilitas antar kelompok (Between-groups Variance): variansi yang dipicu oleh perbedaan nyata antar kelompok variabel.",
+      "2. Variabilitas dalam kelompok (Within-groups Variance): variansi acak di dalam masing-masing individu kelompok.",
+      "",
+      "Rasio kedua variansi ini menghasilkan F-statistik (F-hitung). Jika F-hitung cukup besar sehingga p-value < 0.05, maka hipotesis nol (bahwa seluruh rata-rata kelompok adalah sama) ditolak secara ilmiah.",
+    ];
 
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
+    metodologiAnova.forEach((text) => {
+      if (text === "") {
+        y += 4;
+      } else {
+        const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
+        doc.text(lines, margin, y);
+        y += lines.length * 5 + 2;
+      }
+    });
 
-  const metodologiOutlier = [
-    "Outlier adalah nilai yang secara signifikan berbeda dari nilai-nilai lainnya dalam dataset. Deteksi outlier menggunakan metode IQR (Interquartile Range) dengan kriteria:",
-    "",
-    "Outlier = nilai < (Q1 - 1.5 × IQR) atau nilai > (Q3 + 1.5 × IQR)",
-    "",
-    "Dimana:",
-    "- Q1 adalah kuartil pertama (persentil ke-25)",
-    "- Q3 adalah kuartil ketiga (persentil ke-75)",
-    "- IQR = Q3 - Q1",
-    "",
-    "Metode ini efektif untuk mengidentifikasi nilai ekstrem yang mungkin disebabkan oleh kesalahan pengukuran atau karakteristik unik responden tertentu.",
-  ];
+    y += 5;
 
-  metodologiOutlier.forEach((text) => {
-    if (text === "") {
-      y += 4;
-    } else {
-      const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-      doc.text(lines, margin, y);
-      y += lines.length * 5 + 2;
-    }
-  });
+    // 3.2 Uji Post-Hoc t-Test Bonferroni
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFont("times", "bold");
+    doc.setFontSize(12);
+    doc.text("3.2 Uji Perbandingan Berpasangan (Post-Hoc Bonferroni)", margin, y);
+    y += 8;
 
-  // ===== BAB 4: HASIL DAN PEMBAHASAN (TABEL STATISTIK) =====
+    doc.setTextColor(...COLORS.text);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
+
+    const metodologiPostHoc = [
+      "Uji ANOVA hanya memberi tahu apakah terdapat perbedaan rata-rata secara keseluruhan, tetapi tidak merinci kelompok mana yang berbeda satu sama lain. Oleh karena itu, jika uji ANOVA signifikan, dilakukan uji post-hoc berpasangan.",
+      "",
+      "Metode Bonferroni digunakan untuk menjaga agar tingkat kesalahan Tipe I keluarga (family-wise error rate) tidak melonjak akibat melakukan beberapa uji t berulang. Bonferroni mengoreksi nilai p-value dengan mengalikan nilai p-value t-test mentah dengan jumlah total perbandingan berpasangan (m = k(k-1)/2).",
+    ];
+
+    metodologiPostHoc.forEach((text) => {
+      if (text === "") {
+        y += 4;
+      } else {
+        const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
+        doc.text(lines, margin, y);
+        y += lines.length * 5 + 2;
+      }
+    });
+  }
+
+  // ===== BAB 4: HASIL DAN PEMBAHASAN =====
   doc.addPage();
   currentPage++;
   addHeaderFooter(currentPage);
 
   y = 30;
 
-  // Bab header
   doc.setFillColor(...COLORS.darkBlue);
   doc.rect(margin, y, pageWidth - 2 * margin, 12, "F");
   doc.setTextColor(255, 255, 255);
@@ -525,369 +595,499 @@ export async function generatePDFReport(
 
   y += 20;
 
-  doc.setTextColor(...COLORS.midBlue);
-  doc.setFontSize(12);
-  doc.text("4.1 Statistik Deskriptif", margin, y);
-  y += 10;
+  if (mode === "deskriptif") {
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFontSize(12);
+    doc.text("4.1 Ringkasan Parameter Statistik Deskriptif", margin, y);
+    y += 10;
 
-  // Tabel statistik
-  const tableData = [
-    ["N (Valid)", ...stats.map((s) => s.n.toString())],
-    ["Mean", ...stats.map((s) => s.mean.toFixed(2))],
-    ["Median", ...stats.map((s) => s.median.toFixed(2))],
-    [
-      "Modus",
-      ...stats.map((s) =>
-        Array.isArray(s.mode) ? s.mode.join(", ") : s.mode.toString(),
-      ),
-    ],
-    ["Std. Deviasi", ...stats.map((s) => s.stdDev.toFixed(2))],
-    ["Varians", ...stats.map((s) => s.variance.toFixed(2))],
-    ["Minimum", ...stats.map((s) => s.min.toString())],
-    ["Maksimum", ...stats.map((s) => s.max.toString())],
-    ["Range", ...stats.map((s) => s.range.toString())],
-    ["Q1", ...stats.map((s) => s.q1.toFixed(2))],
-    ["Q3", ...stats.map((s) => s.q3.toFixed(2))],
-    ["IQR", ...stats.map((s) => s.iqr.toFixed(2))],
-    ["Skewness", ...stats.map((s) => s.skewness.toFixed(2))],
-    ["Kurtosis", ...stats.map((s) => s.kurtosis.toFixed(2))],
-    ["Outlier (n)", ...stats.map((s) => s.outliers.length.toString())],
-    ["Kategori", ...stats.map((s) => s.category)],
-  ];
+    // Tabel statistik
+    const tableData = [
+      ["N (Valid)", ...stats.map((s) => s.n.toString())],
+      ["Mean", ...stats.map((s) => s.mean.toFixed(2))],
+      ["Median", ...stats.map((s) => s.median.toFixed(2))],
+      [
+        "Modus",
+        ...stats.map((s) =>
+          Array.isArray(s.mode) ? s.mode.join(", ") : s.mode.toString(),
+        ),
+      ],
+      ["Std. Deviasi", ...stats.map((s) => s.stdDev.toFixed(2))],
+      ["Varians", ...stats.map((s) => s.variance.toFixed(2))],
+      ["Minimum", ...stats.map((s) => s.min.toString())],
+      ["Maksimum", ...stats.map((s) => s.max.toString())],
+      ["Range", ...stats.map((s) => s.range.toString())],
+      ["Q1", ...stats.map((s) => s.q1.toFixed(2))],
+      ["Q3", ...stats.map((s) => s.q3.toFixed(2))],
+      ["IQR", ...stats.map((s) => s.iqr.toFixed(2))],
+      ["Skewness", ...stats.map((s) => s.skewness.toFixed(2))],
+      ["Kurtosis", ...stats.map((s) => s.kurtosis.toFixed(2))],
+      ["Outlier (n)", ...stats.map((s) => s.outliers.length.toString())],
+      ["Kategori", ...stats.map((s) => s.category)],
+    ];
 
-  autoTable(doc, {
-    startY: y,
-    head: [["Statistik", ...stats.map((s) => s.variable)]],
-    body: tableData,
-    theme: "grid",
-    styles: {
-      font: "times",
-      fontSize: 9,
-      cellPadding: 3,
-    },
-    headStyles: {
-      fillColor: COLORS.darkBlue,
-      textColor: [255, 255, 255],
-      fontStyle: "bold",
-      halign: "center",
-    },
-    columnStyles: {
-      0: {
-        fillColor: COLORS.lightBlue,
-        fontStyle: "bold",
-        textColor: COLORS.midBlue,
+    autoTable(doc, {
+      startY: y,
+      head: [["Statistik", ...stats.map((s) => s.variable)]],
+      body: tableData,
+      theme: "grid",
+      styles: {
+        font: "times",
+        fontSize: 9,
+        cellPadding: 3,
       },
-    },
-    alternateRowStyles: {
-      fillColor: [245, 248, 255],
-    },
-  });
+      headStyles: {
+        fillColor: COLORS.darkBlue,
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+        halign: "center",
+      },
+      columnStyles: {
+        0: {
+          fillColor: COLORS.lightBlue,
+          fontStyle: "bold",
+          textColor: COLORS.midBlue,
+        },
+      },
+      alternateRowStyles: {
+        fillColor: [245, 248, 255],
+      },
+    });
 
-  y = (doc as any).lastAutoTable.finalY + 10;
+    y = (doc as any).lastAutoTable.finalY + 8;
 
-  // Caption tabel
-  doc.setFont("times", "italic");
-  doc.setFontSize(9);
-  doc.setTextColor(100, 100, 100);
-  const caption = "Tabel 1. Statistik Deskriptif Variabel Penelitian (n=100)";
-  doc.text(caption, pageWidth / 2, y, { align: "center" });
+    doc.setFont("times", "italic");
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.text(
+      `Tabel 1. Parameter Deskriptif Variabel Penelitian (n=${rawData.length})`,
+      pageWidth / 2,
+      y,
+      { align: "center" },
+    );
+    y += 15;
 
-  // ===== 4.2 Analisis Distribusi Data =====
-  doc.addPage();
-  currentPage++;
-  addHeaderFooter(currentPage);
-
-  y = 30;
-
-  doc.setTextColor(...COLORS.midBlue);
-  doc.setFont("times", "bold");
-  doc.setFontSize(12);
-  doc.text("4.2 Analisis Distribusi Data", margin, y);
-  y += 10;
-
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
-
-  const analisisDistribusi = [
-    "Berdasarkan nilai skewness dan kurtosis, dapat diidentifikasi bentuk distribusi data untuk setiap variabel:",
-  ];
-
-  analisisDistribusi.forEach((text) => {
-    const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-    doc.text(lines, margin, y);
-    y += lines.length * 5 + 3;
-  });
-
-  y += 5;
-
-  // Tabel interpretasi distribusi
-  const distribusiData = stats.map((s) => [
-    s.variable,
-    s.skewness.toFixed(2),
-    s.kurtosis.toFixed(2),
-    s.interpretation,
-  ]);
-
-  autoTable(doc, {
-    startY: y,
-    head: [["Variabel", "Skewness", "Kurtosis", "Interpretasi"]],
-    body: distribusiData,
-    theme: "grid",
-    styles: {
-      font: "times",
-      fontSize: 9,
-      cellPadding: 3,
-    },
-    headStyles: {
-      fillColor: COLORS.darkBlue,
-      textColor: [255, 255, 255],
-      fontStyle: "bold",
-      halign: "center",
-    },
-    columnStyles: {
-      0: { cellWidth: 35 },
-      1: { halign: "center", cellWidth: 25 },
-      2: { halign: "center", cellWidth: 25 },
-      3: { cellWidth: 85 },
-    },
-  });
-
-  y = (doc as any).lastAutoTable.finalY + 10;
-
-  doc.setFont("times", "italic");
-  doc.setFontSize(9);
-  doc.setTextColor(100, 100, 100);
-  doc.text("Tabel 2. Interpretasi Bentuk Distribusi Data", pageWidth / 2, y, {
-    align: "center",
-  });
-
-  y += 10;
-
-  // Narasi interpretasi
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
-
-  const narasiDistribusi = [
-    `Variabel dengan distribusi paling simetris adalah ${stats.reduce((min, s) => (Math.abs(s.skewness) < Math.abs(min.skewness) ? s : min)).variable} dengan nilai skewness ${stats.reduce((min, s) => (Math.abs(s.skewness) < Math.abs(min.skewness) ? s : min)).skewness.toFixed(2)}, mengindikasikan data terdistribusi relatif merata di sekitar nilai tengah.`,
-    "",
-    `Sebaliknya, ${stats.reduce((max, s) => (Math.abs(s.skewness) > Math.abs(max.skewness) ? s : max)).variable} menunjukkan kemencengan yang lebih signifikan dengan skewness ${stats.reduce((max, s) => (Math.abs(s.skewness) > Math.abs(max.skewness) ? s : max)).skewness.toFixed(2)}, menunjukkan konsentrasi data pada salah satu sisi distribusi.`,
-  ];
-
-  narasiDistribusi.forEach((text) => {
-    if (text === "") {
-      y += 4;
-    } else {
-      const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-      doc.text(lines, margin, y);
-      y += lines.length * 5 + 3;
+    // 4.2 Analisis Distribusi Data
+    if (y > pageHeight - 80) {
+      doc.addPage();
+      currentPage++;
+      addHeaderFooter(currentPage);
+      y = 30;
     }
-  });
-
-  // ===== 4.3 Deteksi dan Analisis Outlier =====
-  doc.addPage();
-  currentPage++;
-  addHeaderFooter(currentPage);
-
-  y = 30;
-
-  doc.setTextColor(...COLORS.midBlue);
-  doc.setFont("times", "bold");
-  doc.setFontSize(12);
-  doc.text("4.3 Deteksi dan Analisis Outlier", margin, y);
-  y += 10;
-
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
-
-  const totalOutliersAll = stats.reduce((sum, s) => sum + s.outliers.length, 0);
-  const totalDataPointsOutlier = stats.length * 100;
-  const outlierPercent = (
-    (totalOutliersAll / totalDataPointsOutlier) *
-    100
-  ).toFixed(1);
-
-  const analisisOutlier = [
-    `Deteksi outlier menggunakan metode IQR mengidentifikasi ${totalOutliersAll} nilai ekstrem dari total ${totalDataPointsOutlier} data poin (${outlierPercent}%). Distribusi outlier per variabel adalah sebagai berikut:`,
-  ];
-
-  analisisOutlier.forEach((text) => {
-    const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-    doc.text(lines, margin, y);
-    y += lines.length * 5 + 3;
-  });
-
-  y += 5;
-
-  // Tabel outlier
-  const outlierData = stats.map((s) => [
-    s.variable,
-    s.outliers.length.toString(),
-    ((s.outliers.length / 100) * 100).toFixed(1) + "%",
-    s.outliers.length > 0
-      ? s.outliers.slice(0, 5).join(", ") + (s.outliers.length > 5 ? "..." : "")
-      : "Tidak ada",
-  ]);
-
-  autoTable(doc, {
-    startY: y,
-    head: [
-      ["Variabel", "Jumlah Outlier", "Persentase", "Contoh Nilai Outlier"],
-    ],
-    body: outlierData,
-    theme: "grid",
-    styles: {
-      font: "times",
-      fontSize: 9,
-      cellPadding: 3,
-    },
-    headStyles: {
-      fillColor: COLORS.darkBlue,
-      textColor: [255, 255, 255],
-      fontStyle: "bold",
-      halign: "center",
-    },
-    columnStyles: {
-      0: { cellWidth: 35 },
-      1: { halign: "center", cellWidth: 30 },
-      2: { halign: "center", cellWidth: 25 },
-      3: { cellWidth: 80 },
-    },
-    didParseCell: (data: any) => {
-      if (data.section === "body" && data.column.index === 1) {
-        const count = parseInt(data.cell.text[0]);
-        if (count > 0) {
-          data.cell.styles.textColor = COLORS.red;
-          data.cell.styles.fontStyle = "bold";
-        }
-      }
-    },
-  });
-
-  y = (doc as any).lastAutoTable.finalY + 10;
-
-  doc.setFont("times", "italic");
-  doc.setFontSize(9);
-  doc.setTextColor(100, 100, 100);
-  doc.text("Tabel 3. Deteksi Outlier per Variabel", pageWidth / 2, y, {
-    align: "center",
-  });
-
-  y += 10;
-
-  // Interpretasi outlier
-  doc.setTextColor(...COLORS.text);
-  doc.setFont("times", "normal");
-  doc.setFontSize(10);
-
-  const varWithMostOutliers = stats.reduce((max, s) =>
-    s.outliers.length > max.outliers.length ? s : max,
-  );
-  const varWithNoOutliers = stats.filter((s) => s.outliers.length === 0);
-
-  const interpretasiOutlier = [
-    varWithMostOutliers.outliers.length > 0
-      ? `Variabel ${varWithMostOutliers.variable} memiliki outlier terbanyak (${varWithMostOutliers.outliers.length} nilai), mengindikasikan adanya responden dengan penilaian yang sangat berbeda dari mayoritas. Hal ini dapat disebabkan oleh pengalaman pengguna yang unik atau ekspektasi yang berbeda.`
-      : "Tidak ditemukan outlier yang signifikan pada semua variabel, menunjukkan konsistensi penilaian yang baik di antara responden.",
-    "",
-    varWithNoOutliers.length > 0
-      ? `Variabel ${varWithNoOutliers.map((v) => v.variable).join(", ")} tidak memiliki outlier, menunjukkan distribusi penilaian yang homogen dan konsisten dari seluruh responden.`
-      : "Semua variabel memiliki setidaknya satu outlier, menunjukkan keberagaman pendapat responden.",
-  ];
-
-  interpretasiOutlier.forEach((text) => {
-    if (text === "") {
-      y += 4;
-    } else {
-      const lines = doc.splitTextToSize(text, pageWidth - 2 * margin);
-      doc.text(lines, margin, y);
-      y += lines.length * 5 + 3;
-    }
-  });
-
-  // ===== 4.4 VISUALISASI DATA =====
-  // Capture histogram charts
-  console.log("Capturing visualizations for PDF...");
-
-  const histogramImage = await captureElement("histogram-section");
-  const boxplotImage = await captureElement("boxplot-section");
-
-  if (histogramImage || boxplotImage) {
-    doc.addPage();
-    currentPage++;
-    addHeaderFooter(currentPage);
-
-    y = 30;
 
     doc.setTextColor(...COLORS.midBlue);
     doc.setFont("times", "bold");
     doc.setFontSize(12);
-    doc.text("4.4 Visualisasi Data", margin, y);
-    y += 10;
+    doc.text("4.2 Analisis Distribusi Data", margin, y);
+    y += 8;
 
-    // Histogram
-    if (histogramImage) {
-      doc.setTextColor(...COLORS.text);
-      doc.setFont("times", "normal");
-      doc.setFontSize(10);
-      doc.text("Histogram Distribusi Frekuensi:", margin, y);
+    doc.setTextColor(...COLORS.text);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
+    doc.text(
+      "Berdasarkan nilai skewness dan kurtosis, bentuk sebaran distribusi data diidentifikasi sebagai berikut:",
+      margin,
+      y,
+    );
+    y += 8;
+
+    const distribusiData = stats.map((s) => [
+      s.variable,
+      s.skewness.toFixed(2),
+      s.kurtosis.toFixed(2),
+      s.interpretation,
+    ]);
+
+    autoTable(doc, {
+      startY: y,
+      head: [["Variabel", "Skewness", "Kurtosis", "Interpretasi Sebaran"]],
+      body: distribusiData,
+      theme: "grid",
+      styles: {
+        font: "times",
+        fontSize: 9,
+        cellPadding: 3,
+      },
+      headStyles: {
+        fillColor: COLORS.darkBlue,
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+        halign: "center",
+      },
+      columnStyles: {
+        0: { cellWidth: 35 },
+        1: { halign: "center", cellWidth: 25 },
+        2: { halign: "center", cellWidth: 25 },
+        3: { cellWidth: 85 },
+      },
+    });
+
+    y = (doc as any).lastAutoTable.finalY + 8;
+
+    doc.setFont("times", "italic");
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.text("Tabel 2. Penafsiran Bentuk Distribusi Variabel", pageWidth / 2, y, {
+      align: "center",
+    });
+    y += 15;
+
+    // 4.3 Deteksi Outlier
+    if (y > pageHeight - 80) {
+      doc.addPage();
+      currentPage++;
+      addHeaderFooter(currentPage);
+      y = 30;
+    }
+
+    doc.setTextColor(...COLORS.midBlue);
+    doc.setFont("times", "bold");
+    doc.setFontSize(12);
+    doc.text("4.3 Deteksi dan Analisis Outlier", margin, y);
+    y += 8;
+
+    doc.setTextColor(...COLORS.text);
+    doc.setFont("times", "normal");
+    doc.setFontSize(10);
+
+    const totalOutliersAll = stats.reduce((sum, s) => sum + s.outliers.length, 0);
+    const totalDataPointsOutlier = stats.length * rawData.length;
+    const outlierPercent = (
+      (totalOutliersAll / totalDataPointsOutlier) *
+      100
+    ).toFixed(1);
+
+    doc.text(
+      `Deteksi outlier mendeteksi sebanyak ${totalOutliersAll} pencilan data dari total ${totalDataPointsOutlier} data poin (${outlierPercent}%).`,
+      margin,
+      y,
+    );
+    y += 8;
+
+    const outlierData = stats.map((s) => [
+      s.variable,
+      s.outliers.length.toString(),
+      ((s.outliers.length / rawData.length) * 100).toFixed(1) + "%",
+      s.outliers.length > 0
+        ? s.outliers.slice(0, 5).join(", ") + (s.outliers.length > 5 ? "..." : "")
+        : "Tidak ada",
+    ]);
+
+    autoTable(doc, {
+      startY: y,
+      head: [
+        ["Variabel", "Jumlah Outlier", "Persentase", "Sampel Nilai Outlier"],
+      ],
+      body: outlierData,
+      theme: "grid",
+      styles: {
+        font: "times",
+        fontSize: 9,
+        cellPadding: 3,
+      },
+      headStyles: {
+        fillColor: COLORS.darkBlue,
+        textColor: [255, 255, 255],
+        fontStyle: "bold",
+        halign: "center",
+      },
+      columnStyles: {
+        0: { cellWidth: 35 },
+        1: { halign: "center", cellWidth: 30 },
+        2: { halign: "center", cellWidth: 25 },
+        3: { cellWidth: 80 },
+      },
+      didParseCell: (data: any) => {
+        if (data.section === "body" && data.column.index === 1) {
+          const count = parseInt(data.cell.text[0]);
+          if (count > 0) {
+            data.cell.styles.textColor = COLORS.red;
+            data.cell.styles.fontStyle = "bold";
+          }
+        }
+      },
+    });
+
+    y = (doc as any).lastAutoTable.finalY + 8;
+
+    doc.setFont("times", "italic");
+    doc.setFontSize(9);
+    doc.setTextColor(100, 100, 100);
+    doc.text("Tabel 3. Ringkasan Outlier Data per Variabel", pageWidth / 2, y, {
+      align: "center",
+    });
+    y += 15;
+
+    // 4.4 Visualisasi
+    console.log("Capturing visualizations for PDF...");
+    const histogramImage = await captureElement("histogram-section");
+    const boxplotImage = await captureElement("boxplot-section");
+
+    if (histogramImage || boxplotImage) {
+      doc.addPage();
+      currentPage++;
+      addHeaderFooter(currentPage);
+      y = 30;
+
+      doc.setTextColor(...COLORS.midBlue);
+      doc.setFont("times", "bold");
+      doc.setFontSize(12);
+      doc.text("4.4 Visualisasi Data Deskriptif", margin, y);
       y += 8;
 
-      const imgWidth = pageWidth - 2 * margin;
-      const imgHeight = 80; // Fixed height for consistency
+      if (histogramImage) {
+        doc.setTextColor(...COLORS.text);
+        doc.setFont("times", "normal");
+        doc.setFontSize(10);
+        doc.text("Histogram Distribusi Frekuensi:", margin, y);
+        y += 6;
 
-      doc.addImage(histogramImage, "PNG", margin, y, imgWidth, imgHeight);
-      y += imgHeight + 5;
+        const imgWidth = pageWidth - 2 * margin;
+        const imgHeight = 75;
+        doc.addImage(histogramImage, "PNG", margin, y, imgWidth, imgHeight);
+        y += imgHeight + 4;
+
+        doc.setFont("times", "italic");
+        doc.setFontSize(9);
+        doc.setTextColor(100, 100, 100);
+        doc.text("Gambar 1. Histogram Distribusi Frekuensi Variabel", pageWidth / 2, y, {
+          align: "center",
+        });
+        y += 12;
+      }
+
+      if (boxplotImage) {
+        if (y > pageHeight - 90) {
+          doc.addPage();
+          currentPage++;
+          addHeaderFooter(currentPage);
+          y = 30;
+        }
+
+        doc.setTextColor(...COLORS.text);
+        doc.setFont("times", "normal");
+        doc.setFontSize(10);
+        doc.text("Boxplot Sebaran & Komparasi Kuartil:", margin, y);
+        y += 6;
+
+        const imgWidth = pageWidth - 2 * margin;
+        const imgHeight = 75;
+        doc.addImage(boxplotImage, "PNG", margin, y, imgWidth, imgHeight);
+        y += imgHeight + 4;
+
+        doc.setFont("times", "italic");
+        doc.setFontSize(9);
+        doc.setTextColor(100, 100, 100);
+        doc.text("Gambar 2. Box & Whisker Plot Komparasi Variabel", pageWidth / 2, y, {
+          align: "center",
+        });
+      }
+    }
+  } else {
+    // ANOVA Mode Hasil & Pembahasan
+    if (anovaData) {
+      doc.setTextColor(...COLORS.midBlue);
+      doc.setFontSize(12);
+      doc.text("4.1 Uji F Analisis Variansi (ANOVA)", margin, y);
+      y += 10;
+
+      // APA Table
+      const formatPValue = (p: number) => {
+        if (p < 0.001) return p.toExponential(3);
+        return p.toFixed(4);
+      };
+
+      const anovaTableRows = [
+        [
+          "Antar Kelompok (Between Groups)",
+          anovaData.ssBetween.toFixed(3),
+          anovaData.dfBetween.toString(),
+          anovaData.msBetween.toFixed(3),
+          anovaData.fStatistic.toFixed(3),
+          formatPValue(anovaData.pValue),
+        ],
+        [
+          "Dalam Kelompok (Within Groups)",
+          anovaData.ssWithin.toFixed(3),
+          anovaData.dfWithin.toString(),
+          anovaData.msWithin.toFixed(3),
+          "",
+          "",
+        ],
+        [
+          "Total",
+          anovaData.ssTotal.toFixed(3),
+          anovaData.dfTotal.toString(),
+          "",
+          "",
+          "",
+        ],
+      ];
+
+      autoTable(doc, {
+        startY: y,
+        head: [["Sumber Variasi", "SS (Jml Kuadrat)", "df", "MS (Rerata Kuadrat)", "F-Hitung", "P-Value"]],
+        body: anovaTableRows,
+        theme: "grid",
+        styles: {
+          font: "times",
+          fontSize: 9,
+          cellPadding: 3,
+        },
+        headStyles: {
+          fillColor: COLORS.darkBlue,
+          textColor: [255, 255, 255],
+          fontStyle: "bold",
+          halign: "center",
+        },
+        columnStyles: {
+          0: { cellWidth: 50 },
+          1: { halign: "center", cellWidth: 30 },
+          2: { halign: "center", cellWidth: 15 },
+          3: { halign: "center", cellWidth: 30 },
+          4: { halign: "center", cellWidth: 25 },
+          5: { halign: "center", cellWidth: 25 },
+        },
+      });
+
+      y = (doc as any).lastAutoTable.finalY + 8;
 
       doc.setFont("times", "italic");
       doc.setFontSize(9);
       doc.setTextColor(100, 100, 100);
-      doc.text(
-        "Gambar 1. Histogram Distribusi Frekuensi Variabel",
-        pageWidth / 2,
-        y,
-        {
-          align: "center",
-        },
-      );
-      y += 10;
-    }
+      doc.text("Tabel 1. Ringkasan Hasil Pengujian ANOVA Satu Arah", pageWidth / 2, y, {
+        align: "center",
+      });
+      y += 15;
 
-    // Boxplot
-    if (boxplotImage) {
-      // Check if we need a new page
-      if (y > pageHeight - 100) {
+      // 4.2 Visualisasi Interval Plot
+      const anovaPlotImage = await captureElement("anova-plot-card");
+      if (anovaPlotImage) {
+        if (y > pageHeight - 90) {
+          doc.addPage();
+          currentPage++;
+          addHeaderFooter(currentPage);
+          y = 30;
+        }
+
+        doc.setTextColor(...COLORS.text);
+        doc.setFont("times", "normal");
+        doc.setFontSize(10);
+        doc.text("Interval Plot Rata-rata & 95% Confidence Interval (CI):", margin, y);
+        y += 6;
+
+        const imgWidth = pageWidth - 2 * margin;
+        const imgHeight = 70;
+        doc.addImage(anovaPlotImage, "PNG", margin, y, imgWidth, imgHeight);
+        y += imgHeight + 4;
+
+        doc.setFont("times", "italic");
+        doc.setFontSize(9);
+        doc.setTextColor(100, 100, 100);
+        doc.text("Gambar 1. Interval Kepercayaan Rata-rata 95% Kelompok", pageWidth / 2, y, {
+          align: "center",
+        });
+        y += 15;
+      }
+
+      // 4.3 Post-hoc Pairwise Comparisons
+      if (y > pageHeight - 80) {
         doc.addPage();
         currentPage++;
         addHeaderFooter(currentPage);
         y = 30;
       }
 
-      doc.setTextColor(...COLORS.text);
-      doc.setFont("times", "normal");
-      doc.setFontSize(10);
-      doc.text("Boxplot Perbandingan Variabel:", margin, y);
+      doc.setTextColor(...COLORS.midBlue);
+      doc.setFont("times", "bold");
+      doc.setFontSize(12);
+      doc.text("4.3 Perbandingan Berpasangan Uji Post-Hoc Bonferroni", margin, y);
       y += 8;
 
-      const imgWidth = pageWidth - 2 * margin;
-      const imgHeight = 80;
+      const postHocRows = anovaData.pairwiseComparisons.map((item) => [
+        `${item.groupA} vs ${item.groupB}`,
+        (item.meanDiff > 0 ? "+" : "") + item.meanDiff.toFixed(2),
+        item.tStatistic.toFixed(2),
+        formatPValue(item.pValueAdj),
+        item.isSignificant ? "Signifikan" : "Tidak Signifikan",
+      ]);
 
-      doc.addImage(boxplotImage, "PNG", margin, y, imgWidth, imgHeight);
-      y += imgHeight + 5;
+      autoTable(doc, {
+        startY: y,
+        head: [["Perbandingan Kelompok", "Selisih Mean", "t-Statistik", "p-value (Adj)", "Hasil Uji"]],
+        body: postHocRows,
+        theme: "grid",
+        styles: {
+          font: "times",
+          fontSize: 9,
+          cellPadding: 3,
+        },
+        headStyles: {
+          fillColor: COLORS.darkBlue,
+          textColor: [255, 255, 255],
+          fontStyle: "bold",
+          halign: "center",
+        },
+        columnStyles: {
+          0: { cellWidth: 50 },
+          1: { halign: "center", cellWidth: 25 },
+          2: { halign: "center", cellWidth: 25 },
+          3: { halign: "center", cellWidth: 30 },
+          4: { halign: "center", cellWidth: 40 },
+        },
+        didParseCell: (data: any) => {
+          if (data.section === "body" && data.column.index === 4) {
+            const isSig = data.cell.text[0] === "Signifikan";
+            if (isSig) {
+              data.cell.styles.textColor = COLORS.green;
+              data.cell.styles.fontStyle = "bold";
+            }
+          }
+        },
+      });
+
+      y = (doc as any).lastAutoTable.finalY + 8;
 
       doc.setFont("times", "italic");
       doc.setFontSize(9);
       doc.setTextColor(100, 100, 100);
-      doc.text(
-        "Gambar 2. Boxplot Perbandingan Distribusi Antar Variabel",
-        pageWidth / 2,
-        y,
-        {
-          align: "center",
-        },
-      );
+      doc.text("Tabel 2. Hasil Komparasi Berpasangan Koreksi Bonferroni", pageWidth / 2, y, {
+        align: "center",
+      });
+      y += 15;
+
+      // 4.4 Interpretasi Hasil Uji
+      if (y > pageHeight - 60) {
+        doc.addPage();
+        currentPage++;
+        addHeaderFooter(currentPage);
+        y = 30;
+      }
+
+      doc.setTextColor(...COLORS.midBlue);
+      doc.setFont("times", "bold");
+      doc.setFontSize(12);
+      doc.text("4.4 Interpretasi Hasil Analisis Variansi", margin, y);
+      y += 8;
+
+      doc.setTextColor(...COLORS.text);
+      doc.setFont("times", "normal");
+      doc.setFontSize(10);
+
+      const interpLines = doc.splitTextToSize(anovaData.interpretation, pageWidth - 2 * margin);
+      doc.text(interpLines, margin, y);
+      y += interpLines.length * 5 + 5;
+
+      if (anovaData.isSignificant) {
+        const diffMax = anovaData.pairwiseComparisons.reduce((max, item) =>
+          Math.abs(item.meanDiff) > Math.abs(max.meanDiff) ? item : max
+        );
+        const extraInterp = `Berdasarkan perbandingan di atas, kesenjangan terbesar terdapat pada perbandingan aspek ${diffMax.groupA} dan ${diffMax.groupB} dengan selisih mean ${Math.abs(diffMax.meanDiff).toFixed(2)} (p-value adj = ${formatPValue(diffMax.pValueAdj)}), yang menunjukkan bahwa kepuasan responden tidak homogen pada kedua variabel tersebut.`;
+        
+        const extraLines = doc.splitTextToSize(extraInterp, pageWidth - 2 * margin);
+        doc.text(extraLines, margin, y);
+        y += extraLines.length * 5 + 5;
+      }
     }
   }
 
@@ -917,15 +1117,41 @@ export async function generatePDFReport(
   doc.setFont("times", "normal");
   doc.setFontSize(10);
 
-  const kesimpulan = [
-    `Berdasarkan analisis statistik deskriptif terhadap ${rawData.length} responden dengan ${stats.length} variabel pengukuran, dapat disimpulkan bahwa data menunjukkan karakteristik yang ${avgMean > 3.5 ? "positif" : "bervariasi"} dengan rata-rata keseluruhan ${avgMean.toFixed(2)}.`,
-    "",
-    `Aspek ${highestStat.variable} memperoleh penilaian tertinggi (${highestStat.mean.toFixed(2)}) yang termasuk kategori "${highestStat.category}", menunjukkan kekuatan utama dari data yang dianalisis.`,
-    "",
-    `Sebaliknya, ${lowestStat.variable} mendapat penilaian terendah (${lowestStat.mean.toFixed(2)}) yang memerlukan perhatian khusus untuk perbaikan.`,
-    "",
-    `Deteksi outlier menunjukkan ${totalOutliers} dari ${totalDataPoints} data poin (${((totalOutliers / totalDataPoints) * 100).toFixed(1)}%) merupakan nilai ekstrem, mengindikasikan ${totalOutliers < totalDataPoints * 0.05 ? "konsistensi yang baik" : "variasi yang cukup beragam"} di antara observasi.`,
-  ];
+  let kesimpulan: string[] = [];
+
+  if (mode === "deskriptif") {
+    kesimpulan = [
+      `Berdasarkan analisis statistik deskriptif terhadap ${rawData.length} responden dengan ${stats.length} variabel pengukuran, dapat disimpulkan bahwa data menunjukkan karakteristik sebaran rata-rata keseluruhan sebesar ${avgMean.toFixed(2)}.`,
+      "",
+      `Aspek ${highestStat.variable} memperoleh penilaian tertinggi (${highestStat.mean.toFixed(2)}) yang termasuk kategori "${highestStat.category}", menunjukkan kekuatan utama dari data yang dianalisis.`,
+      "",
+      `Sebaliknya, aspek ${lowestStat.variable} mendapat penilaian terendah (${lowestStat.mean.toFixed(2)}) yang memerlukan perhatian khusus untuk perbaikan di masa mendatang.`,
+      "",
+      `Deteksi outlier menunjukkan terdapat ${totalOutliers} pencilan ekstrem dari total ${totalDataPoints} poin data (${((totalOutliers / totalDataPoints) * 100).toFixed(1)}%), mengindikasikan adanya ${totalOutliers < totalDataPoints * 0.05 ? "konsistensi penilaian yang tinggi" : "variabilitas tanggapan yang cukup lebar"} di antara observasi.`,
+    ];
+  } else {
+    kesimpulan = [
+      `Berdasarkan pengujian hipotesis ANOVA satu arah terhadap ${rawData.length} responden dengan ${stats.length} variabel, terbukti secara statistik bahwa terdapat ${anovaData?.isSignificant ? "perbedaan rata-rata yang signifikan secara nyata" : "tidak ada perbedaan rata-rata yang signifikan"} di antara kelompok aspek (F = ${anovaData?.fStatistic.toFixed(2)}, p-value = ${anovaData ? (anovaData.pValue < 0.001 ? anovaData.pValue.toExponential(3) : anovaData.pValue.toFixed(4)) : ""}).`,
+      "",
+      anovaData?.isSignificant
+        ? `Hasil pengujian post-hoc Bonferroni menegaskan adanya perbedaan nyata di beberapa kelompok berpasangan, dengan perbedaan skor tertinggi tercatat pada perbandingan aspek ${
+            anovaData.pairwiseComparisons.reduce((max, item) =>
+              Math.abs(item.meanDiff) > Math.abs(max.meanDiff) ? item : max
+            ).groupA
+          } vs ${
+            anovaData.pairwiseComparisons.reduce((max, item) =>
+              Math.abs(item.meanDiff) > Math.abs(max.meanDiff) ? item : max
+            ).groupB
+          } (selisih = ${Math.abs(
+            anovaData.pairwiseComparisons.reduce((max, item) =>
+              Math.abs(item.meanDiff) > Math.abs(max.meanDiff) ? item : max
+            ).meanDiff
+          ).toFixed(2)} poin).`
+        : "Seluruh variabel dinilai setara oleh observasi, menunjukkan tidak adanya kesenjangan mutu yang nyata di antara indikator-indikator yang diteliti.",
+      "",
+      `Analisis visual plot interval 95% Confidence Interval mengonfirmasi bahwa rentang taksiran rata-rata kelompok ${highestStat.variable} dan ${lowestStat.variable} ${anovaData?.isSignificant ? "saling terpisah secara nyata" : "saling beririsan (tumpang tindih)"}, selaras dengan kesimpulan uji hipotesis ANOVA.`,
+    ];
+  }
 
   kesimpulan.forEach((text) => {
     if (text === "") {
@@ -953,47 +1179,88 @@ export async function generatePDFReport(
 
   y += 20;
 
-  const rekomendasi = [
-    {
-      no: 1,
-      aksi: "Optimasi performa dan kecepatan loading aplikasi",
-      target: lowestStat.variable,
-      prioritas: "HIGH",
-      timeline: "Q2 2026",
-    },
-    {
-      no: 2,
-      aksi: "Peningkatan konsistensi dan kualitas UI/UX",
-      target: "UI/UX",
-      prioritas: "MEDIUM",
-      timeline: "Q2 2026",
-    },
-    {
-      no: 3,
-      aksi: "Penambahan fitur berdasarkan feedback pengguna",
-      target: "Features",
-      prioritas: "MEDIUM",
-      timeline: "Q3 2026",
-    },
-    {
-      no: 4,
-      aksi: "Program peningkatan kepuasan dan engagement pengguna",
-      target: "Satisfaction",
-      prioritas: "LOW",
-      timeline: "Q3 2026",
-    },
-  ];
+  const rekomendasiRows: string[][] = [];
+
+  if (mode === "deskriptif") {
+    rekomendasiRows.push(
+      [
+        "1",
+        `Lakukan optimasi dan peningkatan performa intensif untuk aspek ${lowestStat.variable} guna meningkatkan kepuasan pengguna.`,
+        lowestStat.variable,
+        "HIGH",
+        "Q2 " + currentYear,
+      ],
+      [
+        "2",
+        "Lakukan audit desain secara berkala untuk mempertahankan konsistensi antarmuka pengguna.",
+        "UI/UX",
+        "MEDIUM",
+        "Q2 " + currentYear,
+      ],
+      [
+        "3",
+        "Tambahkan fitur-fitur pendukung secara bertahap sesuai kebutuhan prioritas.",
+        "Features",
+        "MEDIUM",
+        "Q3 " + currentYear,
+      ],
+      [
+        "4",
+        "Pertahankan keunggulan layanan dan lakukan monitoring kepuasan pengguna secara reguler.",
+        "Satisfaction",
+        "LOW",
+        "Q4 " + currentYear,
+      ],
+    );
+  } else {
+    if (anovaData?.isSignificant) {
+      rekomendasiRows.push(
+        [
+          "1",
+          `Fokuskan peningkatan kualitas pada variabel ${lowestStat.variable} untuk memperkecil gap perbedaan rata-rata yang signifikan dibanding ${highestStat.variable}.`,
+          lowestStat.variable,
+          "HIGH",
+          "Q2 " + currentYear,
+        ],
+        [
+          "2",
+          "Standardisasi proses dan infrastruktur layanan antar-aspek agar persepsi kualitas lebih merata di seluruh indikator.",
+          "Semua Aspek",
+          "MEDIUM",
+          "Q3 " + currentYear,
+        ],
+        [
+          "3",
+          "Lakukan evaluasi pasca-implementasi perbaikan untuk memverifikasi apakah gap variansi mean telah berhasil dieliminasi.",
+          "Evaluasi Ulang",
+          "MEDIUM",
+          "Q4 " + currentYear,
+        ],
+      );
+    } else {
+      rekomendasiRows.push(
+        [
+          "1",
+          "Pertahankan kualitas yang sudah merata secara homogen di seluruh indikator variabel agar kepuasan pengguna tetap seimbang.",
+          "Semua Aspek",
+          "MEDIUM",
+          "Q3 " + currentYear,
+        ],
+        [
+          "2",
+          "Lakukan audit performa preventif untuk mencegah penurunan mendadak pada salah satu aspek penilaian.",
+          "Maintenance",
+          "LOW",
+          "Q4 " + currentYear,
+        ],
+      );
+    }
+  }
 
   autoTable(doc, {
     startY: y,
-    head: [["No", "Rekomendasi", "Target", "Prioritas", "Timeline"]],
-    body: rekomendasi.map((r) => [
-      r.no.toString(),
-      r.aksi,
-      r.target,
-      r.prioritas,
-      r.timeline,
-    ]),
+    head: [["No", "Aksi Rekomendasi Kerja", "Sasaran / Target", "Prioritas", "Timeline Target"]],
+    body: rekomendasiRows,
     theme: "grid",
     styles: {
       font: "times",
@@ -1016,5 +1283,9 @@ export async function generatePDFReport(
   });
 
   // Save PDF
-  doc.save("Laporan_Statistik_Deskriptif.pdf");
+  doc.save(
+    mode === "deskriptif"
+      ? "Laporan_Statistik_Deskriptif.pdf"
+      : "Laporan_Analisis_ANOVA.pdf",
+  );
 }

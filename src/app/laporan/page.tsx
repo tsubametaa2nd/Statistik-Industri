@@ -1,6 +1,6 @@
 "use client";
 
-import { computeAllStats } from "@/lib/statistics";
+import { computeAllStats, computeAnova } from "@/lib/statistics";
 import { generatePDFReport } from "@/lib/pdfGenerator";
 import Navbar from "@/components/layout/Navbar";
 import HeroSection from "@/components/sections/HeroSection";
@@ -9,11 +9,12 @@ import MetodologiSection from "@/components/sections/MetodologiSection";
 import TabelStatistik from "@/components/sections/TabelStatistik";
 import HistogramChart from "@/components/sections/HistogramChart";
 import BoxplotChart from "@/components/sections/BoxplotChart";
+import AnovaSection from "@/components/sections/AnovaSection";
 import AnalisisNarasi from "@/components/sections/AnalisisNarasi";
 import KesimpulanSection from "@/components/sections/KesimpulanSection";
 import RekomendasiSection from "@/components/sections/RekomendasiSection";
 import FileUploadSection from "@/components/sections/FileUploadSection";
-import { BarChart3, TrendingUp, Search, Upload } from "lucide-react";
+import { BarChart3, TrendingUp, Search, Upload, Activity } from "lucide-react";
 import { useState } from "react";
 
 export default function LaporanPage() {
@@ -21,8 +22,10 @@ export default function LaporanPage() {
   const [variables, setVariables] = useState<string[]>([]);
   const [hasData, setHasData] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [activeMethod, setActiveMethod] = useState<"deskriptif" | "anova">("deskriptif");
 
   const allStats = hasData ? computeAllStats(rawData) : [];
+  const anovaData = hasData ? computeAnova(rawData, variables) : null;
 
   const handleDataLoaded = (data: Record<string, number>[], vars: string[]) => {
     setRawData(data);
@@ -45,7 +48,7 @@ export default function LaporanPage() {
       loadingToast.textContent = "Membuat PDF... Mohon tunggu";
       document.body.appendChild(loadingToast);
 
-      await generatePDFReport(allStats, rawData);
+      await generatePDFReport(allStats, rawData, anovaData, activeMethod);
 
       // Remove loading toast
       document.body.removeChild(loadingToast);
@@ -124,33 +127,67 @@ export default function LaporanPage() {
               <span>Hasil & Pembahasan</span>
             </h2>
 
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
-                  <BarChart3 className="w-7 h-7 text-[var(--accent-blue)]" />
-                  <span>Statistik Deskriptif</span>
-                </h3>
-                <TabelStatistik stats={allStats} />
-              </div>
+            {/* Method Selector Tabs */}
+            <div className="flex p-1 bg-slate-950/60 border border-slate-900 rounded-2xl max-w-md mb-10">
+              <button
+                onClick={() => setActiveMethod("deskriptif")}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                  activeMethod === "deskriptif"
+                    ? "bg-[var(--accent-blue)]/10 text-[var(--accent-blue)] border border-[var(--accent-blue)]/20 shadow-sm"
+                    : "text-[var(--text-secondary)] hover:text-slate-200"
+                }`}
+              >
+                <BarChart3 className="w-4 h-4" />
+                <span>Statistik Deskriptif</span>
+              </button>
+              <button
+                onClick={() => setActiveMethod("anova")}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs font-bold transition-all duration-300 cursor-pointer ${
+                  activeMethod === "anova"
+                    ? "bg-[var(--accent-blue)]/10 text-[var(--accent-blue)] border border-[var(--accent-blue)]/20 shadow-sm"
+                    : "text-[var(--text-secondary)] hover:text-slate-200"
+                }`}
+              >
+                <Activity className="w-4 h-4" />
+                <span>Analisis Variansi (ANOVA)</span>
+              </button>
+            </div>
 
-              <div>
-                <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
-                  <TrendingUp className="w-7 h-7 text-[var(--accent-cyan)]" />
-                  <span>Visualisasi Data</span>
-                </h3>
-                <div className="space-y-6">
-                  <HistogramChart data={rawData} stats={allStats} />
-                  <BoxplotChart stats={allStats} />
+            <div className="transition-all duration-300">
+              {activeMethod === "deskriptif" ? (
+                <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
+                      <BarChart3 className="w-7 h-7 text-[var(--accent-blue)]" />
+                      <span>Statistik Deskriptif</span>
+                    </h3>
+                    <TabelStatistik stats={allStats} />
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
+                      <TrendingUp className="w-7 h-7 text-[var(--accent-cyan)]" />
+                      <span>Visualisasi Data</span>
+                    </h3>
+                    <div className="space-y-6">
+                      <HistogramChart data={rawData} stats={allStats} />
+                      <BoxplotChart stats={allStats} />
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
+                      <Search className="w-7 h-7 text-[var(--accent-gold)]" />
+                      <span>Analisis</span>
+                    </h3>
+                    <AnalisisNarasi stats={allStats} />
+                  </div>
                 </div>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-semibold mb-6 flex items-center gap-3">
-                  <Search className="w-7 h-7 text-[var(--accent-gold)]" />
-                  <span>Analisis</span>
-                </h3>
-                <AnalisisNarasi stats={allStats} />
-              </div>
+              ) : (
+                <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
+                  {anovaData && <AnovaSection anovaData={anovaData} />}
+                </div>
+              )}
             </div>
           </section>
 

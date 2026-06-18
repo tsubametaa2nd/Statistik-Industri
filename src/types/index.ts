@@ -57,3 +57,44 @@ export function getVariableColor(variable: string, index: number = 0): string {
     VARIABLE_COLORS[variable] || DEFAULT_COLORS[index % DEFAULT_COLORS.length]
   );
 }
+
+export interface GroupStat {
+  name: string;
+  n: number;
+  mean: number;
+  variance: number;
+  stdDev: number;
+  sem: number;
+  ciLower: number;
+  ciUpper: number;
+}
+
+export interface PairwiseComparison {
+  groupA: string;
+  groupB: string;
+  meanDiff: number;
+  tStatistic: number;
+  pValueRaw: number;
+  pValueAdj: number;
+  isSignificant: boolean;
+  interpretation: string;
+}
+
+export interface AnovaResult {
+  dfBetween: number;
+  dfWithin: number;
+  dfTotal: number;
+  ssBetween: number;
+  ssWithin: number;
+  ssTotal: number;
+  msBetween: number;
+  msWithin: number;
+  fStatistic: number;
+  pValue: number;
+  isSignificant: boolean;
+  significanceLevel: number;
+  groupStats: GroupStat[];
+  pairwiseComparisons: PairwiseComparison[];
+  interpretation: string;
+}
+
