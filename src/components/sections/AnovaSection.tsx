@@ -26,8 +26,8 @@ export default function AnovaSection({ anovaData }: AnovaSectionProps) {
     // Add 15% buffer top and bottom
     const buffer = range === 0 ? 0.5 : range * 0.15;
     return {
-      minVal: Math.max(0, absoluteMin - buffer),
-      maxVal: Math.min(6, absoluteMax + buffer),
+      minVal: absoluteMin - buffer,
+      maxVal: absoluteMax + buffer,
     };
   }, [anovaData]);
 

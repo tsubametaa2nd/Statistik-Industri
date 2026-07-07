@@ -1,0 +1,2866 @@
+[
+  {
+    "NO": 1,
+    "Matematika": 37,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 82,
+    "Informatika": 90,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 2,
+    "Matematika": 78,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 85,
+    "Informatika": 87,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 3,
+    "Matematika": 78,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 75,
+    "Informatika": 80,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 4,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 90,
+    "Informatika": 93,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 5,
+    "Matematika": 78,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 74,
+    "Informatika": 86,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 6,
+    "Matematika": 24,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 78,
+    "Informatika": 75,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 7,
+    "Matematika": 78,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 88,
+    "Informatika": 71,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 8,
+    "Matematika": 22,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 82,
+    "Informatika": 84,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 9,
+    "Matematika": 52,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 89,
+    "Informatika": 90,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 10,
+    "Matematika": 78,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 86,
+    "Informatika": 88,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 11,
+    "Matematika": 78,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 92,
+    "Informatika": 91,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 12,
+    "Matematika": 78,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 79,
+    "Informatika": 82,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 13,
+    "Matematika": 78,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 87,
+    "Informatika": 89,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 14,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 88,
+    "Informatika": 90,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 15,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 76,
+    "Informatika": 78,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 16,
+    "Matematika": 78,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 85,
+    "Informatika": 87,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 17,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 78,
+    "Informatika": 92,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 18,
+    "Matematika": 12,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 81,
+    "Informatika": 83,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 19,
+    "Matematika": 78,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 87,
+    "Informatika": 78,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 20,
+    "Matematika": 35,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 94,
+    "Informatika": 95,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 21,
+    "Matematika": 78,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 83,
+    "Informatika": 85,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 22,
+    "Matematika": 78,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 78,
+    "Informatika": 80,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 23,
+    "Matematika": 78,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 89,
+    "Informatika": 91,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 24,
+    "Matematika": 78,
+    "Ekonomi": 82,
+    "BahasaIndonesia": 84,
+    "Informatika": 86,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 25,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 90,
+    "Informatika": 91,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 26,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 92,
+    "Informatika": 94,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 27,
+    "Matematika": 78,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 89,
+    "Informatika": 84,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 28,
+    "Matematika": 78,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 73,
+    "Informatika": 77,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 29,
+    "Matematika": 78,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 90,
+    "Informatika": 71,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 30,
+    "Matematika": 78,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 93,
+    "Informatika": 91,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 31,
+    "Matematika": 49,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 84,
+    "Informatika": 78,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 32,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 79,
+    "Informatika": 96,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 33,
+    "Matematika": 59,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 95,
+    "Informatika": 96,
+    "BahasaInggris": 76
+  },
+  {
+    "NO": 34,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 84,
+    "Informatika": 81,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 35,
+    "Matematika": 78,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 77,
+    "Informatika": 95,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 36,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 73,
+    "Informatika": 83,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 37,
+    "Matematika": 78,
+    "Ekonomi": 82,
+    "BahasaIndonesia": 98,
+    "Informatika": 82,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 38,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 96,
+    "Informatika": 72,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 39,
+    "Matematika": 78,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 88,
+    "Informatika": 74,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 40,
+    "Matematika": 78,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 88,
+    "Informatika": 80,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 41,
+    "Matematika": 30,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 90,
+    "Informatika": 98,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 42,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 77,
+    "Informatika": 93,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 43,
+    "Matematika": 61,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 92,
+    "Informatika": 78,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 44,
+    "Matematika": 15,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 73,
+    "Informatika": 98,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 45,
+    "Matematika": 18,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 74,
+    "Informatika": 83,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 46,
+    "Matematika": 78,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 91,
+    "Informatika": 97,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 47,
+    "Matematika": 78,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 82,
+    "Informatika": 82,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 48,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 79,
+    "Informatika": 93,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 49,
+    "Matematika": 20,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 73,
+    "Informatika": 90,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 50,
+    "Matematika": 20,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 88,
+    "Informatika": 94,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 51,
+    "Matematika": 78,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 85,
+    "Informatika": 83,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 52,
+    "Matematika": 78,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 93,
+    "Informatika": 88,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 53,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 81,
+    "Informatika": 97,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 54,
+    "Matematika": 78,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 72,
+    "Informatika": 78,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 55,
+    "Matematika": 78,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 96,
+    "Informatika": 81,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 56,
+    "Matematika": 30,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 73,
+    "Informatika": 77,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 57,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 81,
+    "Informatika": 77,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 58,
+    "Matematika": 78,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 83,
+    "Informatika": 91,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 59,
+    "Matematika": 78,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 79,
+    "Informatika": 75,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 60,
+    "Matematika": 78,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 88,
+    "Informatika": 88,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 61,
+    "Matematika": 53,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 89,
+    "Informatika": 84,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 62,
+    "Matematika": 78,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 82,
+    "Informatika": 78,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 63,
+    "Matematika": 78,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 86,
+    "Informatika": 73,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 64,
+    "Matematika": 78,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 98,
+    "Informatika": 74,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 65,
+    "Matematika": 41,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 76,
+    "Informatika": 96,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 66,
+    "Matematika": 78,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 90,
+    "Informatika": 73,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 67,
+    "Matematika": 78,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 90,
+    "Informatika": 85,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 68,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 88,
+    "Informatika": 98,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 69,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 94,
+    "Informatika": 74,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 70,
+    "Matematika": 78,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 95,
+    "Informatika": 79,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 71,
+    "Matematika": 18,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 81,
+    "Informatika": 74,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 72,
+    "Matematika": 78,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 76,
+    "Informatika": 85,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 73,
+    "Matematika": 50,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 94,
+    "Informatika": 79,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 74,
+    "Matematika": 78,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 76,
+    "Informatika": 87,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 75,
+    "Matematika": 78,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 91,
+    "Informatika": 80,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 76,
+    "Matematika": 23,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 87,
+    "Informatika": 90,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 77,
+    "Matematika": 78,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 82,
+    "Informatika": 95,
+    "BahasaInggris": 76
+  },
+  {
+    "NO": 78,
+    "Matematika": 78,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 95,
+    "Informatika": 87,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 79,
+    "Matematika": 15,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 81,
+    "Informatika": 86,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 80,
+    "Matematika": 24,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 82,
+    "Informatika": 97,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 81,
+    "Matematika": 78,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 78,
+    "Informatika": 72,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 82,
+    "Matematika": 43,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 73,
+    "Informatika": 73,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 83,
+    "Matematika": 78,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 97,
+    "Informatika": 73,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 84,
+    "Matematika": 15,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 95,
+    "Informatika": 75,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 85,
+    "Matematika": 34,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 86,
+    "Informatika": 88,
+    "BahasaInggris": 76
+  },
+  {
+    "NO": 86,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 87,
+    "Informatika": 98,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 87,
+    "Matematika": 42,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 77,
+    "Informatika": 88,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 88,
+    "Matematika": 42,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 93,
+    "Informatika": 77,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 89,
+    "Matematika": 36,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 83,
+    "Informatika": 92,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 90,
+    "Matematika": 33,
+    "Ekonomi": 82,
+    "BahasaIndonesia": 85,
+    "Informatika": 87,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 91,
+    "Matematika": 34,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 78,
+    "Informatika": 78,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 92,
+    "Matematika": 66,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 71,
+    "Informatika": 89,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 93,
+    "Matematika": 78,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 89,
+    "Informatika": 78,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 94,
+    "Matematika": 15,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 93,
+    "Informatika": 91,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 95,
+    "Matematika": 78,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 73,
+    "Informatika": 72,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 96,
+    "Matematika": 44,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 73,
+    "Informatika": 87,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 97,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 92,
+    "Informatika": 86,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 98,
+    "Matematika": 78,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 75,
+    "Informatika": 94,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 99,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 86,
+    "Informatika": 78,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 100,
+    "Matematika": 78,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 96,
+    "Informatika": 84,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 101,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 74,
+    "Informatika": 92,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 102,
+    "Matematika": 78,
+    "Ekonomi": 82,
+    "BahasaIndonesia": 84,
+    "Informatika": 84,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 103,
+    "Matematika": 15,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 94,
+    "Informatika": 72,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 104,
+    "Matematika": 78,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 91,
+    "Informatika": 74,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 105,
+    "Matematika": 78,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 94,
+    "Informatika": 81,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 106,
+    "Matematika": 78,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 74,
+    "Informatika": 78,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 107,
+    "Matematika": 82,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 88,
+    "Informatika": 85,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 108,
+    "Matematika": 25,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 76,
+    "Informatika": 79,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 109,
+    "Matematika": 78,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 98,
+    "Informatika": 73,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 110,
+    "Matematika": 78,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 98,
+    "Informatika": 98,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 111,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 72,
+    "Informatika": 91,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 112,
+    "Matematika": 78,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 71,
+    "Informatika": 73,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 113,
+    "Matematika": 79,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 78,
+    "Informatika": 76,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 114,
+    "Matematika": 78,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 86,
+    "Informatika": 77,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 115,
+    "Matematika": 78,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 72,
+    "Informatika": 76,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 116,
+    "Matematika": 78,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 83,
+    "Informatika": 79,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 117,
+    "Matematika": 78,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 85,
+    "Informatika": 80,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 118,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 94,
+    "Informatika": 96,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 119,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 93,
+    "Informatika": 86,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 120,
+    "Matematika": 35,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 80,
+    "Informatika": 77,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 121,
+    "Matematika": 14,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 94,
+    "Informatika": 88,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 122,
+    "Matematika": 78,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 81,
+    "Informatika": 72,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 123,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 86,
+    "Informatika": 87,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 124,
+    "Matematika": 37,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 76,
+    "Informatika": 72,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 125,
+    "Matematika": 78,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 98,
+    "Informatika": 76,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 126,
+    "Matematika": 78,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 73,
+    "Informatika": 92,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 127,
+    "Matematika": 78,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 83,
+    "Informatika": 74,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 128,
+    "Matematika": 78,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 89,
+    "Informatika": 90,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 129,
+    "Matematika": 78,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 73,
+    "Informatika": 84,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 130,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 89,
+    "Informatika": 87,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 131,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 77,
+    "Informatika": 92,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 132,
+    "Matematika": 78,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 78,
+    "Informatika": 79,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 133,
+    "Matematika": 78,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 92,
+    "Informatika": 91,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 134,
+    "Matematika": 78,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 81,
+    "Informatika": 95,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 135,
+    "Matematika": 78,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 85,
+    "Informatika": 90,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 136,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 73,
+    "Informatika": 88,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 137,
+    "Matematika": 78,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 79,
+    "Informatika": 75,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 138,
+    "Matematika": 78,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 78,
+    "Informatika": 82,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 139,
+    "Matematika": 78,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 85,
+    "Informatika": 97,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 140,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 80,
+    "Informatika": 90,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 141,
+    "Matematika": 78,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 87,
+    "Informatika": 71,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 142,
+    "Matematika": 78,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 88,
+    "Informatika": 80,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 143,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 75,
+    "Informatika": 79,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 144,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 94,
+    "Informatika": 88,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 145,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 80,
+    "Informatika": 90,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 146,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 81,
+    "Informatika": 77,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 147,
+    "Matematika": 78,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 98,
+    "Informatika": 79,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 148,
+    "Matematika": 78,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 79,
+    "Informatika": 98,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 149,
+    "Matematika": 30,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 91,
+    "Informatika": 84,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 150,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 72,
+    "Informatika": 71,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 151,
+    "Matematika": 78,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 75,
+    "Informatika": 91,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 152,
+    "Matematika": 84,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 94,
+    "Informatika": 85,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 153,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 84,
+    "Informatika": 88,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 154,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 73,
+    "Informatika": 93,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 155,
+    "Matematika": 12,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 72,
+    "Informatika": 97,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 156,
+    "Matematika": 78,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 88,
+    "Informatika": 75,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 157,
+    "Matematika": 78,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 72,
+    "Informatika": 80,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 158,
+    "Matematika": 79,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 98,
+    "Informatika": 72,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 159,
+    "Matematika": 78,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 92,
+    "Informatika": 78,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 160,
+    "Matematika": 14,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 82,
+    "Informatika": 95,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 161,
+    "Matematika": 78,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 84,
+    "Informatika": 90,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 162,
+    "Matematika": 78,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 78,
+    "Informatika": 98,
+    "BahasaInggris": 76
+  },
+  {
+    "NO": 163,
+    "Matematika": 78,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 96,
+    "Informatika": 76,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 164,
+    "Matematika": 78,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 76,
+    "Informatika": 94,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 165,
+    "Matematika": 78,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 84,
+    "Informatika": 96,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 166,
+    "Matematika": 45,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 94,
+    "Informatika": 96,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 167,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 76,
+    "Informatika": 96,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 168,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 83,
+    "Informatika": 98,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 169,
+    "Matematika": 30,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 86,
+    "Informatika": 78,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 170,
+    "Matematika": 78,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 85,
+    "Informatika": 82,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 171,
+    "Matematika": 42,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 96,
+    "Informatika": 98,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 172,
+    "Matematika": 78,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 71,
+    "Informatika": 92,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 173,
+    "Matematika": 78,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 81,
+    "Informatika": 79,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 174,
+    "Matematika": 78,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 95,
+    "Informatika": 79,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 175,
+    "Matematika": 78,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 87,
+    "Informatika": 83,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 176,
+    "Matematika": 78,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 88,
+    "Informatika": 81,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 177,
+    "Matematika": 84,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 79,
+    "Informatika": 76,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 178,
+    "Matematika": 78,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 72,
+    "Informatika": 74,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 179,
+    "Matematika": 78,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 82,
+    "Informatika": 94,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 180,
+    "Matematika": 78,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 84,
+    "Informatika": 90,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 181,
+    "Matematika": 78,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 83,
+    "Informatika": 89,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 182,
+    "Matematika": 30,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 72,
+    "Informatika": 93,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 183,
+    "Matematika": 78,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 87,
+    "Informatika": 96,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 184,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 94,
+    "Informatika": 94,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 185,
+    "Matematika": 69,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 77,
+    "Informatika": 82,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 186,
+    "Matematika": 78,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 92,
+    "Informatika": 81,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 187,
+    "Matematika": 79,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 92,
+    "Informatika": 98,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 188,
+    "Matematika": 78,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 80,
+    "Informatika": 87,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 189,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 84,
+    "Informatika": 81,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 190,
+    "Matematika": 78,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 80,
+    "Informatika": 88,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 191,
+    "Matematika": 59,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 84,
+    "Informatika": 92,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 192,
+    "Matematika": 78,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 94,
+    "Informatika": 76,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 193,
+    "Matematika": 25,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 80,
+    "Informatika": 83,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 194,
+    "Matematika": 78,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 71,
+    "Informatika": 80,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 195,
+    "Matematika": 44,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 84,
+    "Informatika": 96,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 196,
+    "Matematika": 78,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 91,
+    "Informatika": 81,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 197,
+    "Matematika": 78,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 85,
+    "Informatika": 92,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 198,
+    "Matematika": 54,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 86,
+    "Informatika": 96,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 199,
+    "Matematika": 49,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 76,
+    "Informatika": 92,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 200,
+    "Matematika": 78,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 87,
+    "Informatika": 92,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 201,
+    "Matematika": 78,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 81,
+    "Informatika": 73,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 202,
+    "Matematika": 47,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 78,
+    "Informatika": 92,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 203,
+    "Matematika": 69,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 96,
+    "Informatika": 77,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 204,
+    "Matematika": 64,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 72,
+    "Informatika": 78,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 205,
+    "Matematika": 77,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 98,
+    "Informatika": 95,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 206,
+    "Matematika": 54,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 84,
+    "Informatika": 91,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 207,
+    "Matematika": 79,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 93,
+    "Informatika": 93,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 208,
+    "Matematika": 79,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 83,
+    "Informatika": 78,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 209,
+    "Matematika": 54,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 93,
+    "Informatika": 71,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 210,
+    "Matematika": 84,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 95,
+    "Informatika": 74,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 211,
+    "Matematika": 79,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 78,
+    "Informatika": 76,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 212,
+    "Matematika": 54,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 87,
+    "Informatika": 85,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 213,
+    "Matematika": 82,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 78,
+    "Informatika": 98,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 214,
+    "Matematika": 86,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 75,
+    "Informatika": 96,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 215,
+    "Matematika": 79,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 87,
+    "Informatika": 88,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 216,
+    "Matematika": 62,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 95,
+    "Informatika": 85,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 217,
+    "Matematika": 86,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 94,
+    "Informatika": 87,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 218,
+    "Matematika": 74,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 88,
+    "Informatika": 85,
+    "BahasaInggris": 76
+  },
+  {
+    "NO": 219,
+    "Matematika": 84,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 98,
+    "Informatika": 86,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 220,
+    "Matematika": 54,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 95,
+    "Informatika": 78,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 221,
+    "Matematika": 79,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 79,
+    "Informatika": 95,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 222,
+    "Matematika": 47,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 86,
+    "Informatika": 91,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 223,
+    "Matematika": 32,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 85,
+    "Informatika": 73,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 224,
+    "Matematika": 76,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 78,
+    "Informatika": 79,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 225,
+    "Matematika": 69,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 88,
+    "Informatika": 73,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 226,
+    "Matematika": 74,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 78,
+    "Informatika": 83,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 227,
+    "Matematika": 52,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 93,
+    "Informatika": 77,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 228,
+    "Matematika": 42,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 84,
+    "Informatika": 81,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 229,
+    "Matematika": 67,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 84,
+    "Informatika": 72,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 230,
+    "Matematika": 81,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 84,
+    "Informatika": 83,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 231,
+    "Matematika": 74,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 93,
+    "Informatika": 71,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 232,
+    "Matematika": 54,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 89,
+    "Informatika": 83,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 233,
+    "Matematika": 81,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 82,
+    "Informatika": 80,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 234,
+    "Matematika": 42,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 98,
+    "Informatika": 97,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 235,
+    "Matematika": 79,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 94,
+    "Informatika": 94,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 236,
+    "Matematika": 74,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 90,
+    "Informatika": 78,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 237,
+    "Matematika": 39,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 79,
+    "Informatika": 84,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 238,
+    "Matematika": 26,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 83,
+    "Informatika": 81,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 239,
+    "Matematika": 60,
+    "Ekonomi": 92,
+    "BahasaIndonesia": 96,
+    "Informatika": 83,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 240,
+    "Matematika": 44,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 97,
+    "Informatika": 85,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 241,
+    "Matematika": 74,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 88,
+    "Informatika": 71,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 242,
+    "Matematika": 39,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 89,
+    "Informatika": 92,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 243,
+    "Matematika": 81,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 91,
+    "Informatika": 84,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 244,
+    "Matematika": 41,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 85,
+    "Informatika": 76,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 245,
+    "Matematika": 27,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 83,
+    "Informatika": 81,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 246,
+    "Matematika": 38,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 81,
+    "Informatika": 81,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 247,
+    "Matematika": 19,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 79,
+    "Informatika": 95,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 248,
+    "Matematika": 69,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 79,
+    "Informatika": 97,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 249,
+    "Matematika": 76,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 71,
+    "Informatika": 94,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 250,
+    "Matematika": 65,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 82,
+    "Informatika": 78,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 251,
+    "Matematika": 34,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 95,
+    "Informatika": 91,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 252,
+    "Matematika": 34,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 71,
+    "Informatika": 78,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 253,
+    "Matematika": 69,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 71,
+    "Informatika": 90,
+    "BahasaInggris": 75
+  },
+  {
+    "NO": 254,
+    "Matematika": 79,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 75,
+    "Informatika": 86,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 255,
+    "Matematika": 54,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 89,
+    "Informatika": 77,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 256,
+    "Matematika": 84,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 79,
+    "Informatika": 95,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 257,
+    "Matematika": 54,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 90,
+    "Informatika": 90,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 258,
+    "Matematika": 24,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 74,
+    "Informatika": 95,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 259,
+    "Matematika": 74,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 80,
+    "Informatika": 74,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 260,
+    "Matematika": 49,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 80,
+    "Informatika": 89,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 261,
+    "Matematika": 29,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 83,
+    "Informatika": 93,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 262,
+    "Matematika": 64,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 89,
+    "Informatika": 93,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 263,
+    "Matematika": 52,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 78,
+    "Informatika": 74,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 264,
+    "Matematika": 29,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 80,
+    "Informatika": 98,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 265,
+    "Matematika": 50,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 96,
+    "Informatika": 74,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 266,
+    "Matematika": 59,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 96,
+    "Informatika": 72,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 267,
+    "Matematika": 39,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 84,
+    "Informatika": 92,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 268,
+    "Matematika": 64,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 87,
+    "Informatika": 91,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 269,
+    "Matematika": 64,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 98,
+    "Informatika": 84,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 270,
+    "Matematika": 84,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 74,
+    "Informatika": 84,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 271,
+    "Matematika": 74,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 97,
+    "Informatika": 85,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 272,
+    "Matematika": 64,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 84,
+    "Informatika": 76,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 273,
+    "Matematika": 76,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 91,
+    "Informatika": 79,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 274,
+    "Matematika": 74,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 88,
+    "Informatika": 95,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 275,
+    "Matematika": 59,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 84,
+    "Informatika": 97,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 276,
+    "Matematika": 79,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 79,
+    "Informatika": 81,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 277,
+    "Matematika": 79,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 97,
+    "Informatika": 73,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 278,
+    "Matematika": 79,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 78,
+    "Informatika": 95,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 279,
+    "Matematika": 47,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 90,
+    "Informatika": 92,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 280,
+    "Matematika": 64,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 71,
+    "Informatika": 86,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 281,
+    "Matematika": 49,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 76,
+    "Informatika": 86,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 282,
+    "Matematika": 52,
+    "Ekonomi": 82,
+    "BahasaIndonesia": 96,
+    "Informatika": 79,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 283,
+    "Matematika": 30,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 90,
+    "Informatika": 93,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 284,
+    "Matematika": 54,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 71,
+    "Informatika": 87,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 285,
+    "Matematika": 74,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 78,
+    "Informatika": 94,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 286,
+    "Matematika": 53,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 88,
+    "Informatika": 95,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 287,
+    "Matematika": 79,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 86,
+    "Informatika": 91,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 288,
+    "Matematika": 52,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 85,
+    "Informatika": 96,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 289,
+    "Matematika": 69,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 80,
+    "Informatika": 78,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 290,
+    "Matematika": 55,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 78,
+    "Informatika": 80,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 291,
+    "Matematika": 70,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 82,
+    "Informatika": 86,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 292,
+    "Matematika": 79,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 82,
+    "Informatika": 84,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 293,
+    "Matematika": 64,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 81,
+    "Informatika": 82,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 294,
+    "Matematika": 52,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 79,
+    "Informatika": 80,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 295,
+    "Matematika": 76,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 74,
+    "Informatika": 94,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 296,
+    "Matematika": 67,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 74,
+    "Informatika": 94,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 297,
+    "Matematika": 74,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 93,
+    "Informatika": 76,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 298,
+    "Matematika": 69,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 94,
+    "Informatika": 86,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 299,
+    "Matematika": 54,
+    "Ekonomi": 94,
+    "BahasaIndonesia": 89,
+    "Informatika": 95,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 300,
+    "Matematika": 34,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 80,
+    "Informatika": 74,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 301,
+    "Matematika": 86,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 80,
+    "Informatika": 78,
+    "BahasaInggris": 82
+  },
+  {
+    "NO": 302,
+    "Matematika": 49,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 80,
+    "Informatika": 71,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 303,
+    "Matematika": 64,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 75,
+    "Informatika": 79,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 304,
+    "Matematika": 44,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 88,
+    "Informatika": 80,
+    "BahasaInggris": 93
+  },
+  {
+    "NO": 305,
+    "Matematika": 54,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 91,
+    "Informatika": 98,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 306,
+    "Matematika": 69,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 74,
+    "Informatika": 98,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 307,
+    "Matematika": 61,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 80,
+    "Informatika": 86,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 308,
+    "Matematika": 55,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 81,
+    "Informatika": 76,
+    "BahasaInggris": 72
+  },
+  {
+    "NO": 309,
+    "Matematika": 59,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 98,
+    "Informatika": 86,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 310,
+    "Matematika": 61,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 73,
+    "Informatika": 83,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 311,
+    "Matematika": 79,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 89,
+    "Informatika": 91,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 312,
+    "Matematika": 84,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 75,
+    "Informatika": 75,
+    "BahasaInggris": 96
+  },
+  {
+    "NO": 313,
+    "Matematika": 79,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 80,
+    "Informatika": 73,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 314,
+    "Matematika": 49,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 88,
+    "Informatika": 95,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 315,
+    "Matematika": 69,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 90,
+    "Informatika": 96,
+    "BahasaInggris": 90
+  },
+  {
+    "NO": 316,
+    "Matematika": 74,
+    "Ekonomi": 78,
+    "BahasaIndonesia": 95,
+    "Informatika": 87,
+    "BahasaInggris": 83
+  },
+  {
+    "NO": 317,
+    "Matematika": 52,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 85,
+    "Informatika": 80,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 318,
+    "Matematika": 67,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 84,
+    "Informatika": 80,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 319,
+    "Matematika": 84,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 72,
+    "Informatika": 90,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 320,
+    "Matematika": 84,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 95,
+    "Informatika": 77,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 321,
+    "Matematika": 74,
+    "Ekonomi": 77,
+    "BahasaIndonesia": 79,
+    "Informatika": 92,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 322,
+    "Matematika": 74,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 78,
+    "Informatika": 76,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 323,
+    "Matematika": 64,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 76,
+    "Informatika": 71,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 324,
+    "Matematika": 74,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 93,
+    "Informatika": 90,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 325,
+    "Matematika": 54,
+    "Ekonomi": 80,
+    "BahasaIndonesia": 72,
+    "Informatika": 78,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 326,
+    "Matematika": 55,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 80,
+    "Informatika": 93,
+    "BahasaInggris": 98
+  },
+  {
+    "NO": 327,
+    "Matematika": 54,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 73,
+    "Informatika": 92,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 328,
+    "Matematika": 46,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 96,
+    "Informatika": 96,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 329,
+    "Matematika": 79,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 92,
+    "Informatika": 96,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 330,
+    "Matematika": 64,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 74,
+    "Informatika": 88,
+    "BahasaInggris": 78
+  },
+  {
+    "NO": 331,
+    "Matematika": 79,
+    "Ekonomi": 91,
+    "BahasaIndonesia": 75,
+    "Informatika": 79,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 332,
+    "Matematika": 57,
+    "Ekonomi": 75,
+    "BahasaIndonesia": 73,
+    "Informatika": 72,
+    "BahasaInggris": 76
+  },
+  {
+    "NO": 333,
+    "Matematika": 22,
+    "Ekonomi": 96,
+    "BahasaIndonesia": 80,
+    "Informatika": 90,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 334,
+    "Matematika": 86,
+    "Ekonomi": 97,
+    "BahasaIndonesia": 89,
+    "Informatika": 80,
+    "BahasaInggris": 85
+  },
+  {
+    "NO": 335,
+    "Matematika": 44,
+    "Ekonomi": 74,
+    "BahasaIndonesia": 85,
+    "Informatika": 93,
+    "BahasaInggris": 80
+  },
+  {
+    "NO": 336,
+    "Matematika": 50,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 83,
+    "Informatika": 79,
+    "BahasaInggris": 87
+  },
+  {
+    "NO": 337,
+    "Matematika": 82,
+    "Ekonomi": 88,
+    "BahasaIndonesia": 86,
+    "Informatika": 85,
+    "BahasaInggris": 73
+  },
+  {
+    "NO": 338,
+    "Matematika": 64,
+    "Ekonomi": 90,
+    "BahasaIndonesia": 72,
+    "Informatika": 84,
+    "BahasaInggris": 94
+  },
+  {
+    "NO": 339,
+    "Matematika": 54,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 90,
+    "Informatika": 79,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 340,
+    "Matematika": 54,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 78,
+    "Informatika": 92,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 341,
+    "Matematika": 79,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 89,
+    "Informatika": 89,
+    "BahasaInggris": 71
+  },
+  {
+    "NO": 342,
+    "Matematika": 69,
+    "Ekonomi": 95,
+    "BahasaIndonesia": 92,
+    "Informatika": 97,
+    "BahasaInggris": 79
+  },
+  {
+    "NO": 343,
+    "Matematika": 46,
+    "Ekonomi": 89,
+    "BahasaIndonesia": 72,
+    "Informatika": 95,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 344,
+    "Matematika": 84,
+    "Ekonomi": 76,
+    "BahasaIndonesia": 86,
+    "Informatika": 87,
+    "BahasaInggris": 91
+  },
+  {
+    "NO": 345,
+    "Matematika": 79,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 79,
+    "Informatika": 76,
+    "BahasaInggris": 89
+  },
+  {
+    "NO": 346,
+    "Matematika": 64,
+    "Ekonomi": 84,
+    "BahasaIndonesia": 91,
+    "Informatika": 97,
+    "BahasaInggris": 86
+  },
+  {
+    "NO": 347,
+    "Matematika": 56,
+    "Ekonomi": 73,
+    "BahasaIndonesia": 86,
+    "Informatika": 82,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 348,
+    "Matematika": 74,
+    "Ekonomi": 81,
+    "BahasaIndonesia": 81,
+    "Informatika": 92,
+    "BahasaInggris": 74
+  },
+  {
+    "NO": 349,
+    "Matematika": 84,
+    "Ekonomi": 98,
+    "BahasaIndonesia": 76,
+    "Informatika": 81,
+    "BahasaInggris": 84
+  },
+  {
+    "NO": 350,
+    "Matematika": 74,
+    "Ekonomi": 93,
+    "BahasaIndonesia": 86,
+    "Informatika": 80,
+    "BahasaInggris": 92
+  },
+  {
+    "NO": 351,
+    "Matematika": 81,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 97,
+    "Informatika": 95,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 352,
+    "Matematika": 84,
+    "Ekonomi": 72,
+    "BahasaIndonesia": 85,
+    "Informatika": 73,
+    "BahasaInggris": 81
+  },
+  {
+    "NO": 353,
+    "Matematika": 79,
+    "Ekonomi": 79,
+    "BahasaIndonesia": 81,
+    "Informatika": 74,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 354,
+    "Matematika": 74,
+    "Ekonomi": 83,
+    "BahasaIndonesia": 98,
+    "Informatika": 87,
+    "BahasaInggris": 97
+  },
+  {
+    "NO": 355,
+    "Matematika": 69,
+    "Ekonomi": 71,
+    "BahasaIndonesia": 92,
+    "Informatika": 98,
+    "BahasaInggris": 88
+  },
+  {
+    "NO": 356,
+    "Matematika": 74,
+    "Ekonomi": 85,
+    "BahasaIndonesia": 84,
+    "Informatika": 72,
+    "BahasaInggris": 77
+  },
+  {
+    "NO": 357,
+    "Matematika": 64,
+    "Ekonomi": 87,
+    "BahasaIndonesia": 82,
+    "Informatika": 90,
+    "BahasaInggris": 95
+  },
+  {
+    "NO": 358,
+    "Matematika": 64,
+    "Ekonomi": 86,
+    "BahasaIndonesia": 91,
+    "Informatika": 85,
+    "BahasaInggris": 95
+  }
+]
