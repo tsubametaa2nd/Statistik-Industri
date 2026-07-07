@@ -16,7 +16,7 @@ export default function HeroSection({ stats = [] }: HeroSectionProps) {
          Statistik
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-blue)] via-[var(--accent-cyan)] to-[var(--accent-green)]">
-            Industi
+            Industri
           </span>
         </h1>
 
