@@ -22,7 +22,7 @@ export default function LaporanPage() {
   const [variables, setVariables] = useState<string[]>([]);
   const [hasData, setHasData] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [activeMethod, setActiveMethod] = useState<"deskriptif" | "anova">("deskriptif");
+  const [activeMethod, setActiveMethod] = useState<"deskriptif" | "anova">("anova");
 
   const allStats = hasData ? computeAllStats(rawData) : [];
   const anovaData = hasData ? computeAnova(rawData, variables) : null;
