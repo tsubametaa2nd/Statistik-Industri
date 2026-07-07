@@ -13,15 +13,15 @@ export default function HeroSection({ stats = [] }: HeroSectionProps) {
     >
       <div className="relative z-10 text-center max-w-4xl mx-auto flex flex-col items-center">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-[1.1] tracking-tight text-slate-100 max-w-3xl">
-          Analisis Kinerja &
+         Statistik
           <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-blue)] via-[var(--accent-cyan)] to-[var(--accent-green)]">
-            Statistik Deskriptif
+            Industi
           </span>
         </h1>
 
         <p className="text-base md:text-lg text-[var(--text-secondary)] max-w-xl leading-relaxed">
-          Kajian komprehensif data observasi kuesioner untuk mengukur tingkat efektivitas, kepuasan, dan reliabilitas platform digital.
+          Kajian komprehensif data observasi kuesioner untuk mengukur tingkat efektivitas, kepuasan, dan reliabilitas.
         </p>
 
         {/* Variable cards */}
